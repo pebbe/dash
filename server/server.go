@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"path"
-	"strings"
 )
 
 const (
@@ -20,9 +19,7 @@ var (
 
 func main() {
 	http.HandleFunc("/", handle)
-
 	x(http.ListenAndServe(port, nil))
-
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
@@ -30,23 +27,21 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 	url := path.Clean("/" + r.URL.Path)[1:]
 
-	if strings.HasPrefix(url, "static/") {
+	if path.Ext(url) != "" {
 		static(w, url)
 		return
 	}
 
 	switch url {
 	case "":
-		static(w, "static/index.html")
-	case "favicon.ico":
-		static(w, "static/favicon.ico")
+		static(w, "index.html")
 	default:
 		http.Error(w, "Not found", http.StatusNotFound)
 	}
 }
 
 func static(w http.ResponseWriter, url string) {
-	data, err := ioutil.ReadFile("../" + url)
+	data, err := ioutil.ReadFile("../static/" + url)
 	if err != nil {
 		http.Error(w, "Not found", http.StatusNotFound)
 		return
@@ -61,8 +56,15 @@ func static(w http.ResponseWriter, url string) {
 		w.Header().Set("Content-Type", "application/javascript")
 	case ".css":
 		w.Header().Set("Content-Type", "text/css")
+	case ".gif":
+		w.Header().Set("Content-Type", "image/gif")
+	case ".png":
+		w.Header().Set("Content-Type", "image/png")
+	case ".jpg":
+		w.Header().Set("Content-Type", "image/jpeg")
 	case ".ico":
 		w.Header().Set("Content-Type", "image/x-icon")
 	}
+
 	w.Write(data)
 }
