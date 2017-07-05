@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"path"
+	"strings"
 )
 
 const (
@@ -27,7 +28,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 	url := path.Clean("/" + r.URL.Path)[1:]
 
-	if path.Ext(url) != "" {
+	if strings.HasPrefix(url, "scripts/") {
 		static(w, url)
 		return
 	}
@@ -35,13 +36,15 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	switch url {
 	case "":
 		static(w, "index.html")
+	case "favicon.ico":
+		static(w, "favicon.ico")
 	default:
 		http.Error(w, "Not found", http.StatusNotFound)
 	}
 }
 
 func static(w http.ResponseWriter, url string) {
-	data, err := ioutil.ReadFile("../static/" + url)
+	data, err := ioutil.ReadFile("../" + url)
 	if err != nil {
 		http.Error(w, "Not found", http.StatusNotFound)
 		return
@@ -54,6 +57,10 @@ func static(w http.ResponseWriter, url string) {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	case ".js":
 		w.Header().Set("Content-Type", "application/javascript")
+	case ".json":
+		w.Header().Set("Content-Type", "application/json")
+	case ".map":
+		w.Header().Set("Content-Type", "application/json")
 	case ".css":
 		w.Header().Set("Content-Type", "text/css")
 	case ".gif":

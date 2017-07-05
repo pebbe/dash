@@ -1,1 +1,11 @@
 server/server
+
+# Editors
+.idea
+.vscode
+
+# Dependencies
+node_modules
+
+# Compiled files
+scripts
