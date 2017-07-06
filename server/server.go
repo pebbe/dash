@@ -38,8 +38,6 @@ func handle(w http.ResponseWriter, r *http.Request) {
 		static(w, "index.html")
 	case "favicon.ico":
 		static(w, "favicon.ico")
-	case "style.css":
-		static(w, "style.css")
 	default:
 		http.Error(w, "Not found", http.StatusNotFound)
 	}
