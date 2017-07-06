@@ -1,12 +1,15 @@
 package main
 
 import (
+	"fmt"
+	"path"
+
 	"github.com/pebbe/util"
 
 	"io/ioutil"
 	"log"
 	"net/http"
-	"path"
+	"os"
 	"strings"
 )
 
@@ -15,10 +18,33 @@ const (
 )
 
 var (
-	x = util.CheckErr
+	x      = util.CheckErr
+	prefix string
 )
 
+func usage() {
+	fmt.Printf(`
+Usage: %s au|vue
+
+`, os.Args[0])
+}
+
 func main() {
+	if len(os.Args) != 2 {
+		usage()
+		return
+	}
+
+	switch os.Args[1] {
+	case "au":
+		prefix = "aurelia"
+	case "vue":
+		prefix = "vue"
+	default:
+		usage()
+		return
+	}
+
 	http.HandleFunc("/", handle)
 	x(http.ListenAndServe(port, nil))
 }
@@ -44,7 +70,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 }
 
 func static(w http.ResponseWriter, url string) {
-	data, err := ioutil.ReadFile("../" + url)
+	data, err := ioutil.ReadFile("../" + prefix + "/" + url)
 	if err != nil {
 		http.Error(w, "Not found", http.StatusNotFound)
 		return
