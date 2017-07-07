@@ -1,4 +1,4 @@
-<template>
+<template bindable="hideStyle">
     <require from="mensen-lijst.css"></require>
     <table>
         <thead>
@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr repeat.for="mens of mensen" css="${mens.matches(searchText) ? '' : 'display: none'}">
+            <tr repeat.for="mens of mensen" css="${mens.matches(searchText) ? '' : (hideStyle || 'display:none')}">
                 <td>${mens.voornaam}</td>
                 <td>${mens.achternaam}</td>
             </tr>

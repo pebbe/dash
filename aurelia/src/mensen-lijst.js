@@ -1,6 +1,8 @@
-import { Mens } from './mens';
+import { bindable } from 'aurelia-framework';
+import { Mens } from "./mens";
 
 export class MensenLijst {
+    @bindable hideStyle;
     constructor() {
         this.mensen = [
             new Mens("Chris", "Froome"),
