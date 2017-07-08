@@ -1,0 +1,12 @@
+<template>
+    <require from="./klok"></require>
+
+    <svg width="200" height="200">
+        <circle cx="100" cy="100" r="95" stroke="black" stroke-width="2" fill="white" />
+        <line x1="100" y1="100" x2="${100 + 70 * uurX}" y2="${100 - 70 * uurY}" stroke="black" stroke-width="6" />
+        <line x1="100" y1="100" x2="${100 + 90 * minX}" y2="${100 - 90 * minY}" stroke="black" stroke-width="4" />
+        <line x1="100" y1="100" x2="${100 + 90 * secX}" y2="${100 - 90 * secY}" stroke="red" stroke-width="2" />
+    </svg>
+
+
+</template>
