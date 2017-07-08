@@ -10,7 +10,7 @@ export class Klok {
         let uur = d.getHours() + min / 60;
         uur = uur / 12 * 6.2831853;
         min = min / 60 * 6.2831853;
-        sec = sec / 60 *  6.2831853
+        sec = sec / 60 * 6.2831853
         this.uurX = Math.sin(uur);
         this.uurY = Math.cos(uur);
         this.minX = Math.sin(min);
