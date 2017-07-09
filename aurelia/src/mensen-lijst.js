@@ -3,6 +3,7 @@ import { Mens } from "./mens";
 
 export class MensenLijst {
     @bindable hideStyle;
+    @bindable idTag;
     constructor() {
         this.mensen = [
             new Mens("Chris", "Froome"),
@@ -19,9 +20,37 @@ export class MensenLijst {
             new Mens("Fabio", "Aru"),
             new Mens("Peter", "Sagan")
         ];
+        this.order = 0;
         this.searchText = "";
     }
+    attached() {
+        this.load();
+    }
+    detached() {
+        this.save()
+    }
+    load() {
+        let storageContent = localStorage.getItem("MensenLijst" + this.idTag);
+        if (storageContent == undefined) { return; }
+        let data = JSON.parse(storageContent);
+        this.order = data["order"] || 0;
+        this.searchText = data["search"] || "";
+        if (this.order == 1) {
+            this.orderVoornaam();
+        } else if (this.order == 2) {
+            this.orderAchternaam();
+        }
+    }
+    save() {
+        localStorage.setItem(
+            "MensenLijst" + this.idTag,
+            JSON.stringify({
+                order: this.order,
+                search: this.searchText
+            }));
+    }
     orderVoornaam() {
+        this.order = 1;
         this.mensen.sort(function (a, b) {
             if (a.voornaam < b.voornaam) {
                 return -1;
@@ -33,6 +62,7 @@ export class MensenLijst {
         });
     }
     orderAchternaam() {
+        this.order = 2;
         this.mensen.sort(function (a, b) {
             if (a.achtersort < b.achtersort) {
                 return -1;
