@@ -1,7 +1,12 @@
 export class Klok {
     constructor() {
         this.update();
-        setInterval(() => this.update(), 1000);
+    }
+    attached() {
+        this.interval = setInterval(() => this.update(), 1000);
+    }
+    detached() {
+        clearInterval(this.interval);
     }
     update() {
         let d = new Date();

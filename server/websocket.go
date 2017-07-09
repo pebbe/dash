@@ -39,16 +39,15 @@ func ws(w http.ResponseWriter, r *http.Request) {
 		for {
 			mt, message, err := c.ReadMessage()
 			if warn(err) != nil {
-				break
+				return
 			}
 			select {
 			case <-chQuit:
-				log.Printf("quit")
+				log.Printf("reader quit")
 				return
 			case ch <- msg{mt, message}:
 			default:
 			}
-
 		}
 	}()
 
@@ -64,7 +63,7 @@ func ws(w http.ResponseWriter, r *http.Request) {
 	for {
 		select {
 		case <-chQuit:
-			log.Printf("quit")
+			log.Printf("writer quit")
 			return
 		case m = <-ch:
 			upper = string(m.message) == "upper"
