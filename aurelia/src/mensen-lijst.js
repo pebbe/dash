@@ -1,10 +1,11 @@
-import { bindable } from 'aurelia-framework';
+import { bindable, inject, ObserverLocator } from 'aurelia-framework';
 import { Mens } from "./mens";
 
+@inject(ObserverLocator)
 export class MensenLijst {
     @bindable hideStyle;
     @bindable idTag;
-    constructor() {
+    constructor(observerLocator) {
         this.mensen = [
             new Mens("Chris", "Froome"),
             new Mens("Richie", "Porte"),
@@ -22,12 +23,12 @@ export class MensenLijst {
         ];
         this.order = 0;
         this.searchText = "";
+        this.subscription = observerLocator
+            .getObserver(this, 'searchText')
+            .subscribe(this.save.bind(this));
     }
     attached() {
         this.load();
-    }
-    detached() {
-        this.save()
     }
     load() {
         let storageContent = localStorage.getItem("MensenLijst" + this.idTag);
@@ -51,6 +52,7 @@ export class MensenLijst {
     }
     orderVoornaam() {
         this.order = 1;
+        this.save();
         this.mensen.sort(function (a, b) {
             if (a.voornaam < b.voornaam) {
                 return -1;
@@ -63,6 +65,7 @@ export class MensenLijst {
     }
     orderAchternaam() {
         this.order = 2;
+        this.save();
         this.mensen.sort(function (a, b) {
             if (a.achtersort < b.achtersort) {
                 return -1;
