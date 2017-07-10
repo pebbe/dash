@@ -76,8 +76,20 @@ func handle(w http.ResponseWriter, r *http.Request) {
 }
 
 func static(w http.ResponseWriter, url string) {
+
+	if isAu {
+		if url != "" &&
+			url != "index.html" &&
+			url != "favicon.ico" &&
+			!strings.HasPrefix(url, "scripts/") {
+			http.Error(w, "Not found", http.StatusNotFound)
+			return
+		}
+	}
+
 	filename := path.Join("..", prefix, url)
 	fi, err := os.Stat(filename)
+
 	if err != nil {
 		http.Error(w, "Not found", http.StatusNotFound)
 		return
