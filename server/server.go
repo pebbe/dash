@@ -20,14 +20,11 @@ const (
 var (
 	x      = util.CheckErr
 	prefix string
-	isAu   bool
-	isVue  bool
-	isNuxt bool
 )
 
 func usage() {
 	fmt.Printf(`
-Usage: %s au|vue|nuxt
+Usage: %s au|nuxt|vue
 
 `, os.Args[0])
 }
@@ -40,14 +37,11 @@ func main() {
 
 	switch os.Args[1] {
 	case "au":
-		isAu = true
-		prefix = "aurelia"
-	case "vue":
-		isVue = true
-		prefix = "vue"
+		prefix = "../aurelia/dist"
 	case "nuxt":
-		isNuxt = true
-		prefix = "nuxt/dist"
+		prefix = "../nuxt/dist"
+	case "vue":
+		prefix = "../vue/dist"
 	default:
 		usage()
 		return
@@ -67,6 +61,8 @@ func handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Add("Pragma", "no-cache")
 	switch url {
 	case "service/ws":
 		ws(w, r)
@@ -77,17 +73,9 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 func static(w http.ResponseWriter, url string) {
 
-	if isAu {
-		if url != "" &&
-			url != "index.html" &&
-			url != "favicon.ico" &&
-			!strings.HasPrefix(url, "scripts/") {
-			http.Error(w, "Not found", http.StatusNotFound)
-			return
-		}
-	}
+	w.Header().Set("Cache-Control", "public, max-age=86400")
 
-	filename := path.Join("..", prefix, url)
+	filename := path.Join(prefix, url)
 	fi, err := os.Stat(filename)
 
 	if err != nil {
