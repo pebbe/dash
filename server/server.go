@@ -20,11 +20,14 @@ const (
 var (
 	x      = util.CheckErr
 	prefix string
+	isAu   bool
+	isVue  bool
+	isNuxt bool
 )
 
 func usage() {
 	fmt.Printf(`
-Usage: %s au|vue
+Usage: %s au|vue|nuxt
 
 `, os.Args[0])
 }
@@ -37,9 +40,14 @@ func main() {
 
 	switch os.Args[1] {
 	case "au":
+		isAu = true
 		prefix = "aurelia"
 	case "vue":
+		isVue = true
 		prefix = "vue"
+	case "nuxt":
+		isNuxt = true
+		prefix = "nuxt/dist"
 	default:
 		usage()
 		return
@@ -54,17 +62,13 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 	url := path.Clean("/" + r.URL.Path)[1:]
 
-	if strings.HasPrefix(url, "scripts/") {
+	if !strings.HasPrefix(url, "service/") {
 		static(w, url)
 		return
 	}
 
 	switch url {
-	case "":
-		static(w, "index.html")
-	case "favicon.ico":
-		static(w, "favicon.ico")
-	case "ws":
+	case "service/ws":
 		ws(w, r)
 	default:
 		http.Error(w, "Not found", http.StatusNotFound)
@@ -72,7 +76,16 @@ func handle(w http.ResponseWriter, r *http.Request) {
 }
 
 func static(w http.ResponseWriter, url string) {
-	data, err := ioutil.ReadFile("../" + prefix + "/" + url)
+	filename := path.Join("..", prefix, url)
+	fi, err := os.Stat(filename)
+	if err != nil {
+		http.Error(w, "Not found", http.StatusNotFound)
+		return
+	}
+	if fi.IsDir() {
+		filename = path.Join(filename, "index.html")
+	}
+	data, err := ioutil.ReadFile(filename)
 	if err != nil {
 		http.Error(w, "Not found", http.StatusNotFound)
 		return
