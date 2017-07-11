@@ -21,7 +21,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    publicPath: '/kleiweg/dash/nuxt/_nuxt',
+    publicPath: '/kleiweg/dash/nuxt/_nuxt/',
     /*
     ** Run ESLINT on save
     */
