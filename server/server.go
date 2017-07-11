@@ -73,7 +73,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 func static(w http.ResponseWriter, url string) {
 
-	w.Header().Set("Cache-Control", "public, max-age=86400")
+	//w.Header().Set("Cache-Control", "public, max-age=86400")
 
 	filename := path.Join(prefix, url)
 	fi, err := os.Stat(filename)
