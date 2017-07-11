@@ -1,4 +1,4 @@
-dist/index.html: src/* src/*/*
+dist/index.html: config/* src/* src/*/*
 	npm run build
 
 run:
