@@ -3,12 +3,17 @@ SRC = nuxt.config.js \
 	components/* \
 	layouts/* \
 	middleware/* \
-	pages/* \
-	pages/home/* \
+	pages/kleiweg/dash/nuxt/* \
+	pages/kleiweg/dash/nuxt/home/* \
 	plugins/* \
+	static/kleiweg/dash/nuxt/* \
 	store/*
 
-dist/index.html: $(SRC)
+DST = dist/kleiweg/dash/nuxt/index.html
+
+build: $(DST)
+
+$(DST): $(SRC)
 	rm -r dist
 	npm run generate
 
