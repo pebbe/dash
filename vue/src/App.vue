@@ -3,8 +3,7 @@
     <nav>
       <router-link tag="div" to="/">
         <a>Home</a>
-      </router-link>
-      <router-link tag="div" to="/page2">
+      </router-link><router-link tag="div" to="/page2">
         <a>Page 2</a>
       </router-link>
     </nav>
