@@ -1,7 +1,7 @@
 export class App {
     configureRouter(config, router) {
         this.router = router;
-        config.title = "Aurelia";
+        config.title = "Aurelia | Dash";
         // TODO: waarvoor dienen 'name' en 'nav'?
         config.map([
             { route: ["", "home"], name: "home", moduleId: "home", nav: true, title: "Home" },
