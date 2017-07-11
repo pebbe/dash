@@ -20,6 +20,7 @@ const (
 var (
 	x      = util.CheckErr
 	prefix string
+	prune  string
 )
 
 func usage() {
@@ -39,9 +40,11 @@ func main() {
 	case "au":
 		prefix = "../aurelia/dist"
 	case "nuxt":
-		prefix = "../nuxt/dist"
+		prefix = "../nuxt/dist/kleiweg/dash/nuxt"
+		prune = "/kleiweg/dash/nuxt"
 	case "vue":
 		prefix = "../vue/dist"
+		prune = "/kleiweg/dash/vue"
 	default:
 		usage()
 		return
@@ -52,9 +55,15 @@ func main() {
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.RemoteAddr, r.URL)
 
-	url := path.Clean("/" + r.URL.Path)[1:]
+	log.Println(r.RemoteAddr, r.URL.Path)
+
+	p := r.URL.Path
+	if prune != "" && strings.HasPrefix(p, prune) {
+		p = p[len(prune):]
+	}
+
+	url := path.Clean("/" + p)[1:]
 
 	if !strings.HasPrefix(url, "service/") {
 		static(w, url)
@@ -68,6 +77,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 		ws(w, r)
 	default:
 		http.Error(w, "Not found", http.StatusNotFound)
+		log.Println("NOT FOUND:", url)
 	}
 }
 
@@ -80,6 +90,7 @@ func static(w http.ResponseWriter, url string) {
 
 	if err != nil {
 		http.Error(w, "Not found", http.StatusNotFound)
+		log.Println("NOT FOUND:", url)
 		return
 	}
 	if fi.IsDir() {
@@ -88,6 +99,7 @@ func static(w http.ResponseWriter, url string) {
 	data, err := ioutil.ReadFile(filename)
 	if err != nil {
 		http.Error(w, "Not found", http.StatusNotFound)
+		log.Println("NOT FOUND:", url)
 		return
 	}
 
