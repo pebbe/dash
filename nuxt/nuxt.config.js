@@ -10,7 +10,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/kleiweg/dash/nuxt/favicon.ico' }
     ]
   },
   /*
@@ -21,7 +21,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    publicPath: '/kleiweg/dash/nuxt',
+    publicPath: '/kleiweg/dash/nuxt/_nuxt',
     /*
     ** Run ESLINT on save
     */

@@ -9,6 +9,7 @@ SRC = nuxt.config.js \
 	store/*
 
 dist/index.html: $(SRC)
+	rm -r dist
 	npm run generate
 
 run:
