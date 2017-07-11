@@ -2,6 +2,14 @@
 
 > Nuxt.js project
 
+## Create
+
+``` bash
+$ npm install -g vue-cli
+$ vue init nuxt/starter nuxt
+$ cd nuxt
+```
+
 ## Build Setup
 
 ``` bash
