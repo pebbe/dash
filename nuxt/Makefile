@@ -1,4 +1,5 @@
-SRC = assets/* \
+SRC = nuxt.config.js \
+	assets/* \
 	components/* \
 	layouts/* \
 	middleware/* \
