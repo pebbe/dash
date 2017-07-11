@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <nav>
-      <router-link tag="div" to="/">
-        <a>Home</a>
-      </router-link><router-link tag="div" to="/page2">
-        <a>Page 2</a>
+      <router-link v-for="route in this.$router.options.routes" tag="div" :to="route.path" :key="route.path">
+        <a>{{ route.name }}</a>
       </router-link>
     </nav>
     <router-view></router-view>
@@ -17,7 +15,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 nav {
   background-color: grey;
   border-bottom: 1px solid black;

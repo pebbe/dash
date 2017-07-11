@@ -10,13 +10,11 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      meta: {title: 'Home'},
       component: Home
     },
     {
       path: '/page2',
       name: 'Page 2',
-      meta: {title: 'Page 2'},
       component: PageTwo
     }
   ]
