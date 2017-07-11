@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <nav>
+      <router-link tag="div" to="/">
+        <a>Home</a>
+      </router-link>
+      <router-link tag="div" to="/page2">
+        <a>Page 2</a>
+      </router-link>
+    </nav>
     <router-view></router-view>
   </div>
 </template>
@@ -12,12 +19,32 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+nav {
+  background-color: grey;
+  border-bottom: 1px solid black;
+}
+
+nav div {
+  display: inline-block;
+  background-color: darkgrey;
+  border-right: 1px solid black;
+  width: 8em;
+}
+
+nav a {
+  padding: .5em 1em;
+  color: black;
+  display: block;
+  text-decoration: none;
+}
+
+nav .router-link-exact-active a,
+nav a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+nav .router-link-exact-active {
+  font-weight: bold;
 }
 </style>
