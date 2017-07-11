@@ -4,6 +4,14 @@
       <h2>1</h2>
       {{helloworld}}
     </div>
+
+    <div>
+      <h2>Todo</h2>
+      <ul>
+        <li>Alles wat ook in Aurelia is geïmplementeerd</li>
+        <li>Titel aanpassen aan pagina (in routercode?)</li>
+      </ul>
+    </div>
   </div>
 </template>
 
