@@ -72,6 +72,10 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	switch url {
 	case "service/ws":
 		ws(w, r)
+	case "service/save":
+		save(w, r)
+	case "service/load":
+		load(w, r)
 	default:
 		http.Error(w, "Not found", http.StatusNotFound)
 		log.Println("NOT FOUND:", url)
