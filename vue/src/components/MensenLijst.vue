@@ -8,7 +8,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="mens in mensen" v-bind:key="mens.achtersort">
+        <tr v-for="mens in mensen" v-bind:key="mens.achtersort" v-bind:style="mens.matches(searchText) ? '' : (hideStyle || 'display:none')">
           <td>{{mens.voornaam}}</td>
           <td>{{mens.achternaam}}</td>
         </tr>
@@ -16,11 +16,8 @@
     </table>
     <p>
       zoeken:
-      <input type="text">
+      <input type="text" v-model="searchText" v-on:keyup="save">
     </p>
-    <!--
-                            Mensenlijst! {{ idTag }} {{ hideStyle }}
-                        -->
   </div>
 </template>
 
@@ -40,6 +37,8 @@ export default {
   props: ['idTag', 'hideStyle'],
   data: function () {
     var data = {}
+    data.order = 0
+    data.searchText = ''
     data.mensen = [
       new Mens('Chris', 'Froome'),
       new Mens('Richie', 'Porte'),
@@ -56,8 +55,8 @@ export default {
       new Mens('Peter', 'Sagan')
     ]
     data.orderVoornaam = function () {
-      // data.order = 1
-      // data.save()
+      data.order = 1
+      data.save()
       data.mensen.sort(function (a, b) {
         if (a.voornaam < b.voornaam) {
           return -1
@@ -69,8 +68,8 @@ export default {
       })
     }
     data.orderAchternaam = function () {
-      // data.order = 2
-      // data.save()
+      data.order = 2
+      data.save()
       data.mensen.sort(function (a, b) {
         if (a.achtersort < b.achtersort) {
           return -1
@@ -80,6 +79,26 @@ export default {
         }
         return 0
       })
+    }
+    var key = 'MensenLijst' + this.idTag
+    data.save = function () {
+      localStorage.setItem(
+        key,
+        JSON.stringify({
+          order: data.order,
+          search: data.searchText
+        }))
+    }
+    var storageContent = localStorage.getItem(key)
+    if (storageContent !== undefined) {
+      var d = JSON.parse(storageContent)
+      data.order = +d['order'] || 0
+      data.searchText = d['search'] || ''
+      if (data.order === 1) {
+        data.orderVoornaam()
+      } else if (data.order === 2) {
+        data.orderAchternaam()
+      }
     }
     return data
   }
