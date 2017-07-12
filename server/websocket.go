@@ -41,6 +41,7 @@ func ws(w http.ResponseWriter, r *http.Request) {
 			if warn(err) != nil {
 				return
 			}
+			// fmt.Println("read", mt, string(message))
 			select {
 			case <-chQuit:
 				log.Printf("reader quit")
@@ -77,6 +78,7 @@ func ws(w http.ResponseWriter, r *http.Request) {
 		if warn(err) != nil {
 			break
 		}
+		// fmt.Println("write", m.mt, w)
 		j++
 		if j == len(words) {
 			j = 0

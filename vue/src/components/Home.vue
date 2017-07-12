@@ -21,9 +21,13 @@
     </div>
 
     <div>
+      <h2>5</h2>
+      <web-soc></web-soc>
+    </div>
+
+    <div>
       <h2>Todo</h2>
       <ul>
-        <li>Alles wat ook in Aurelia is geïmplementeerd</li>
         <li>Titel aanpassen aan pagina (in routercode?)</li>
       </ul>
     </div>
@@ -33,6 +37,7 @@
 <script>
 import MensenLijst from './MensenLijst.vue'
 import Klok from './Klok.vue'
+import WebSoc from './WebSoc.vue'
 
 export default {
   name: 'home',
@@ -43,7 +48,8 @@ export default {
   },
   components: {
     MensenLijst,
-    Klok
+    Klok,
+    WebSoc
   }
 }
 </script>

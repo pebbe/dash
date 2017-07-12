@@ -91,7 +91,7 @@ export default {
     }
     var storageContent = localStorage.getItem(key)
     if (storageContent !== undefined) {
-      var d = JSON.parse(storageContent)
+      var d = JSON.parse(storageContent) || {}
       data.order = +d['order'] || 0
       data.searchText = d['search'] || ''
       if (data.order === 1) {
