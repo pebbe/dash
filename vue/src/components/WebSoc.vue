@@ -1,11 +1,7 @@
 <template>
   <div>
-    <p>
-      {{message}}
-    </p>
-    <p>
-      <b>{{error}}</b>
-    </p>
+    <div>{{message}}</div>
+    <div><b>{{error}}</b></div>
   </div>
 </template>
 
