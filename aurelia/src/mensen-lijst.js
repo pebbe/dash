@@ -1,11 +1,10 @@
-import { bindable, inject, ObserverLocator } from 'aurelia-framework';
+import { bindable } from 'aurelia-framework';
 import { Mens } from "./mens";
 
-@inject(ObserverLocator)
 export class MensenLijst {
     @bindable hideStyle;
     @bindable idTag;
-    constructor(observerLocator) {
+    constructor() {
         this.mensen = [
             new Mens("Chris", "Froome"),
             new Mens("Richie", "Porte"),
@@ -23,9 +22,6 @@ export class MensenLijst {
         ];
         this.order = 0;
         this.searchText = "";
-        this.subscription = observerLocator
-            .getObserver(this, 'searchText')
-            .subscribe(this.save.bind(this));
     }
     attached() {
         this.load();
@@ -49,6 +45,7 @@ export class MensenLijst {
                 order: this.order,
                 search: this.searchText
             }));
+        return true
     }
     orderVoornaam() {
         this.order = 1;
