@@ -26,6 +26,11 @@
     </div>
 
     <div>
+      <h2>6</h2>
+      <save-load></save-load>
+    </div>
+
+    <div>
       <h2>Todo</h2>
       <ul>
         <li>Titel aanpassen aan pagina (in routercode?)</li>
@@ -38,6 +43,7 @@
 import MensenLijst from './MensenLijst.vue'
 import Klok from './Klok.vue'
 import WebSoc from './WebSoc.vue'
+import SaveLoad from './SaveLoad.vue'
 
 export default {
   name: 'home',
@@ -49,7 +55,8 @@ export default {
   components: {
     MensenLijst,
     Klok,
-    WebSoc
+    WebSoc,
+    SaveLoad
   }
 }
 </script>
