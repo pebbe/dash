@@ -6,6 +6,16 @@
     </div>
   
     <div>
+      <h2>2</h2>
+      <mensen-lijst id-tag="A"></mensen-lijst>
+    </div>
+
+    <div>
+      <h2>3</h2>
+      <mensen-lijst id-tag="B" hide-style="color:lightgrey"></mensen-lijst>
+    </div>
+
+    <div>
       <h2>Todo</h2>
       <ul>
         <li>Alles wat ook in Aurelia is geïmplementeerd</li>
@@ -16,12 +26,17 @@
 </template>
 
 <script>
+import MensenLijst from './MensenLijst.vue'
+
 export default {
   name: 'home',
   data () {
     return {
       helloworld: 'Moi, Groningen!'
     }
+  },
+  components: {
+    MensenLijst
   }
 }
 </script>
