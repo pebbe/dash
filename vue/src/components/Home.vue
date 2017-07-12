@@ -16,6 +16,11 @@
     </div>
 
     <div>
+      <h2>4</h2>
+      <klok></klok>
+    </div>
+
+    <div>
       <h2>Todo</h2>
       <ul>
         <li>Alles wat ook in Aurelia is geïmplementeerd</li>
@@ -27,6 +32,7 @@
 
 <script>
 import MensenLijst from './MensenLijst.vue'
+import Klok from './Klok.vue'
 
 export default {
   name: 'home',
@@ -36,7 +42,8 @@ export default {
     }
   },
   components: {
-    MensenLijst
+    MensenLijst,
+    Klok
   }
 }
 </script>
