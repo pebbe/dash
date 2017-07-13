@@ -1,3 +1,4 @@
+/* begin menu */
 nav {
   background-color: grey;
   border-bottom: 1px solid black;
@@ -24,3 +25,4 @@ nav a:hover {
 nav .current {
   font-weight: bold;
 }
+/* end menu */
