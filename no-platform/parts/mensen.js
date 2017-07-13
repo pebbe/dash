@@ -16,8 +16,8 @@ mensen.Init = function (v) {
             .append($('<td>').text(achternaam))
         this.matches = function (substring) {
             var s = substring.toLowerCase()
-            return this.voornaam.toLowerCase().includes(s) ||
-                this.achternaam.toLowerCase().includes(s)
+            return voornaam.toLowerCase().includes(s) ||
+                achternaam.toLowerCase().includes(s)
         }
     }
 
@@ -61,7 +61,7 @@ mensen.Init = function (v) {
             mensen.achternaam(v.id)
             reordered = true
         }
-        data.input.val('' + (d['search'] || ''))
+        data.input.val(d['search'] || '')
     }
 
     if (!reordered) {
