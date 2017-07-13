@@ -29,8 +29,8 @@ work-script/script.src.js: builder/builder parts/*.js
 	builder/builder `pwd`
 
 dist/style.css: globals/*.css pages/*.css parts/*.css
-	cat globals/*.css pages/*.css parts/*.css | perl -p -e 's!/\*.*?\*/!!g' > work-style/style.css
-	html-minifier --collapse-whitespace --output-dir=dist --input-dir=work-style
+	cat globals/*.css pages/*.css parts/*.css > work-style/style.css
+	perl -p -e 's!/\*.*?\*/!!g' work-style/style.css | html-minifier --collapse-whitespace > dist/style.css
 
 builder/builder: builder/builder.go
 	cd builder && go build -v .
