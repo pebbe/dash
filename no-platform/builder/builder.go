@@ -14,14 +14,15 @@ import (
 )
 
 var (
-	rePart = regexp.MustCompile(`<!--\[\[([a-zA-Z0-9]+)(\s*)(.*?)\]\]-->`)
-	reVar  = regexp.MustCompile(`{{[a-zA-Z0-9]+}}`)
+	rePart = regexp.MustCompile(`<!--\[\[([-_a-zA-Z0-9]+)(\s*)(.*?)\]\]-->`)
+	reVar  = regexp.MustCompile(`{{[-_a-zA-Z0-9]+}}`)
 
 	basedir string
 
 	x = util.CheckErr
 
 	jsfiles = make(map[string]bool)
+	globals = make(map[string]string)
 )
 
 func main() {
@@ -45,7 +46,16 @@ func main() {
 	}
 	fp.Close()
 
-	p := filepath.Join(basedir, "pages")
+	p := filepath.Join(basedir, "globals", "settings.json")
+	b, err := ioutil.ReadFile(p)
+	x(err)
+	var v map[string]interface{}
+	x(json.Unmarshal(b, &v))
+	for key, val := range v {
+		globals[key] = fmt.Sprint(val)
+	}
+
+	p = filepath.Join(basedir, "pages")
 	fis, err := ioutil.ReadDir(p)
 	x(err)
 	for _, fi := range fis {
@@ -62,15 +72,24 @@ func doPage(page string) {
 	x(err)
 	html := string(b)
 
+	html = reVar.ReplaceAllStringFunc(html,
+		func(s string) string {
+			return globals[s[2:len(s)-2]]
+		})
+
 	pagefiles := make([][2]string, 0)
 
-	mm := rePart.FindAllStringSubmatch(html, -1)
-	if mm != nil {
+	for {
+		mm := rePart.FindAllStringSubmatch(html, -1)
+		if mm == nil || len(mm) == 0 {
+			break
+		}
 		for _, m := range mm {
 			if jsfiles[m[1]] {
 				pagefiles = append(pagefiles, [2]string{m[1], m[3]})
 			}
 		}
+		html = rePart.ReplaceAllStringFunc(html, doPart)
 	}
 
 	var buffer bytes.Buffer
@@ -84,8 +103,6 @@ func doPage(page string) {
 ` + buffer.String() + `</script>
 ` + html[i:]
 
-	html = rePart.ReplaceAllStringFunc(html, doPart)
-
 	fp, err := os.Create(filepath.Join(basedir, "dist", page+".html"))
 	x(err)
 	fp.Write([]byte(html))
@@ -96,6 +113,9 @@ func doPart(s string) string {
 	m := rePart.FindStringSubmatch(s)
 
 	translate := make(map[string]string)
+	for key, value := range globals {
+		translate[key] = value
+	}
 	if m[3] != "" {
 		var v map[string]interface{}
 		x(json.Unmarshal([]byte(m[3]), &v))

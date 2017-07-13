@@ -25,9 +25,9 @@ work/script.src.js: builder/builder parts/*.js
 	mkdir -p work
 	builder/builder `pwd`
 
-dist/style.css: pages/*.css parts/*.css
+dist/style.css: globals/*.css pages/*.css parts/*.css
 	mkdir -p dist
-	cat pages/*.css parts/*.css > dist/style.css
+	cat globals/*.css pages/*.css parts/*.css > dist/style.css
 
 builder/builder: builder/builder.go
 	cd builder && go build -v .
