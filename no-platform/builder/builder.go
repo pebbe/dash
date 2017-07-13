@@ -29,7 +29,7 @@ func main() {
 
 	basedir = os.Args[1]
 
-	fp, err := os.Create(filepath.Join(basedir, "work-script", "script.src.js"))
+	fp, err := os.Create(filepath.Join(basedir, "work", "script", "script.src.js"))
 	x(err)
 	for _, dirname := range []string{"pages", "parts"} {
 		p := filepath.Join(basedir, dirname)
@@ -103,7 +103,7 @@ func doPage(page string) {
 ` + buffer.String() + `</script>
 ` + html[i:]
 
-	fp, err := os.Create(filepath.Join(basedir, "work-html", page+".html"))
+	fp, err := os.Create(filepath.Join(basedir, "work", "html", page+".html"))
 	x(err)
 	fp.Write([]byte(html))
 	fp.Close()

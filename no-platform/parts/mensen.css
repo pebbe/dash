@@ -1,0 +1,15 @@
+.mensen table {                                                                                                         
+  width: 100%;                                                                                                  
+}                                                                                                               
+                                                                                                                
+.mensen th {                                                                                                            
+  cursor: pointer;                                                                                              
+  border: 1px solid blue;                                                                                       
+}                                                                                                               
+                                                                                                                
+.mensen th:hover {                                                                                                      
+  background-color: yellow;                                                                                     
+}
+.mensen .nomatch {
+  display:none;
+}
