@@ -10,5 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "html-minifier": "^3.5.2",
+    "uglifyjs": "^2.4.11"
   }
 }
