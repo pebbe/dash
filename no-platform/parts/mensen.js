@@ -61,7 +61,7 @@ mensen.Init = function (v) {
             mensen.achternaam(v.id)
             reordered = true
         }
-        data.input.val(d['search'] || '')
+        data.input.val('' + (d['search'] || ''))
     }
 
     if (!reordered) {
