@@ -1,4 +1,4 @@
-#container {
+body.home .container {
   width: 100%;
   padding: .4em .2em;
 
@@ -15,7 +15,7 @@
   column-width: 20em;
 }
 
-#container>div {
+body.home .container>div {
   break-inside: avoid-column;
   padding: 1em;
   margin: 0px .2em .4em .2em;
@@ -23,6 +23,6 @@
   background-color: white;
 }
 
-#container>div>h2 {
+body.home .container>div>h2 {
   font-weight: normal;
 }
