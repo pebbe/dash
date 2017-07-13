@@ -62,27 +62,26 @@ func doPage(page string) {
 	x(err)
 	html := string(b)
 
-	pagefiles := make(map[string]string)
+	pagefiles := make([][2]string, 0)
 
 	mm := rePart.FindAllStringSubmatch(html, -1)
 	if mm != nil {
 		for _, m := range mm {
 			if jsfiles[m[1]] {
-				pagefiles[m[1]] = m[3]
+				pagefiles = append(pagefiles, [2]string{m[1], m[3]})
 			}
 		}
 	}
 
 	var buffer bytes.Buffer
-	for key, value := range pagefiles {
-		fmt.Fprintf(&buffer, "%s.Init(%s);\n", key, value)
+	for _, v := range pagefiles {
+		fmt.Fprintf(&buffer, "%s.Init(%s);\n", v[0], v[1])
 	}
 	i := strings.LastIndex(html, "</body>")
 	html = html[:i] + `
 <script src="script.js"></script>
 <script>
-` + buffer.String() + `
-</script>
+` + buffer.String() + `</script>
 ` + html[i:]
 
 	html = rePart.ReplaceAllStringFunc(html, doPart)
@@ -109,7 +108,7 @@ func doPart(s string) string {
 	b, err := ioutil.ReadFile(filename)
 	x(err)
 
-	html := string(b)
+	html := strings.TrimSpace(string(b))
 
 	html = reVar.ReplaceAllStringFunc(html,
 		func(s string) string {
