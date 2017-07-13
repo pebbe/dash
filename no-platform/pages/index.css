@@ -28,7 +28,7 @@ body.home .container>div>h2 {
   font-weight: normal;
 }
 
-#p5 .nomatch {
+body.home #p5 .nomatch {
   display: table-row;
   color: lightgrey;
 }

@@ -2,8 +2,11 @@
 
 var $ = require("jquery");
 
-window.mensen = {}
-window.mensen.Init = function (v) {
+var mensen = {}
+
+mensen.data = {}
+
+mensen.Init = function (v) {
     function Mens(voornaam, achternaam, achtersort) {
         this.voornaam = voornaam
         this.achternaam = achternaam
@@ -18,17 +21,16 @@ window.mensen.Init = function (v) {
         }
     }
 
-    window.mensen.data = window.mensen['data'] || {}
-    window.mensen.data[v.id] = {}
-    var data = window.mensen.data[v.id]
+    mensen.data[v.id] = {}
+    var data = mensen.data[v.id]
 
-    $('#' + v.id + ' .voornaam').on('click', function () { window.mensen.voornaam(v.id) })
-    $('#' + v.id + ' .achternaam').on('click', function () { window.mensen.achternaam(v.id) })
-    data.input = $('#' + v.id + ' input')
-    data.input.on('keyup', function () { window.mensen.zoeken(v.id) })
     data.tbody = $('#' + v.id + ' tbody')
+    data.input = $('#' + v.id + ' input')
+    data.input.on('keyup', function () { mensen.zoeken(v.id) })
+    $('#' + v.id + ' .voornaam').on('click', function () { mensen.voornaam(v.id) })
+    $('#' + v.id + ' .achternaam').on('click', function () { mensen.achternaam(v.id) })
 
-    data.mensen = [
+    data.lijst = [
         new Mens('Chris', 'Froome'),
         new Mens('Richie', 'Porte'),
         new Mens('Alberto', 'Contador'),
@@ -51,37 +53,36 @@ window.mensen.Init = function (v) {
     var storageContent = localStorage.getItem(v.id)
     if (storageContent !== undefined) {
         var d = JSON.parse(storageContent) || {}
-        var order = +d['order'] || 0
+        var order = d['order']
         if (order === 1) {
-            window.mensen.voornaam(v.id)
+            mensen.voornaam(v.id)
             reordered = true
         } else if (order === 2) {
-            window.mensen.achternaam(v.id)
+            mensen.achternaam(v.id)
             reordered = true
         }
         data.input.val(d['search'] || '')
     }
 
     if (!reordered) {
-        window.mensen.make(v.id)
+        mensen.make(v.id)
     }
 
-    window.mensen.zoeken(v.id)
+    mensen.zoeken(v.id)
 }
 
-window.mensen.make = function (id) {
-    var data = window.mensen.data[id]
+mensen.make = function (id) {
+    var data = mensen.data[id]
     data.tbody.html('')
-    for (var i = 0; i < data.mensen.length; i++) {
-        data.tbody.append(data.mensen[i].tr)
+    for (var i = 0; i < data.lijst.length; i++) {
+        data.tbody.append(data.lijst[i].tr)
     }
 }
 
-window.mensen.voornaam = function (id) {
-    var data = window.mensen.data[id]
+mensen.voornaam = function (id) {
+    var data = mensen.data[id]
     data.order = 1
-    //data.save()                                                                                               
-    data.mensen.sort(function (a, b) {
+    data.lijst.sort(function (a, b) {
         if (a.voornaam < b.voornaam) {
             return -1
         }
@@ -90,15 +91,14 @@ window.mensen.voornaam = function (id) {
         }
         return 0
     })
-    window.mensen.make(id)
-    window.mensen.save(id)
+    mensen.make(id)
+    mensen.save(id)
 }
 
-window.mensen.achternaam = function (id) {
-    var data = window.mensen.data[id]
+mensen.achternaam = function (id) {
+    var data = mensen.data[id]
     data.order = 2
-    //data.save()                                                                                               
-    data.mensen.sort(function (a, b) {
+    data.lijst.sort(function (a, b) {
         if (a.achtersort < b.achtersort) {
             return -1
         }
@@ -107,24 +107,24 @@ window.mensen.achternaam = function (id) {
         }
         return 0
     })
-    window.mensen.make(id)
-    window.mensen.save(id)
+    mensen.make(id)
+    mensen.save(id)
 }
 
-window.mensen.zoeken = function (id) {
-    var data = window.mensen.data[id]
+mensen.zoeken = function (id) {
+    var data = mensen.data[id]
     data.searchText = data.input.val()
-    for (var i = 0; i < data.mensen.length; i++) {
-        data.mensen[i].tr.removeClass("nomatch")
-        if (!data.mensen[i].matches(data.searchText)) {
-            data.mensen[i].tr.addClass("nomatch")
+    for (var i = 0; i < data.lijst.length; i++) {
+        data.lijst[i].tr.removeClass("nomatch")
+        if (!data.lijst[i].matches(data.searchText)) {
+            data.lijst[i].tr.addClass("nomatch")
         }
     }
-    window.mensen.save(id)
+    mensen.save(id)
 }
 
-window.mensen.save = function (id) {
-    var data = window.mensen.data[id]
+mensen.save = function (id) {
+    var data = mensen.data[id]
     localStorage.setItem(
         id,
         JSON.stringify({
@@ -133,3 +133,4 @@ window.mensen.save = function (id) {
         }))
 }
 
+window.mensen = mensen
