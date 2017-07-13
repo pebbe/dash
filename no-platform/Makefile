@@ -26,6 +26,7 @@ work/script.src.js: builder/builder parts/*.js
 	builder/builder `pwd`
 
 dist/style.css: pages/*.css parts/*.css
+	mkdir -p dist
 	cat pages/*.css parts/*.css > dist/style.css
 
 builder/builder: builder/builder.go
