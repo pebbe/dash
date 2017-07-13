@@ -16,8 +16,8 @@ mensen.Init = function (v) {
             .append($('<td>').text(achternaam))
         this.matches = function (substring) {
             var s = substring.toLowerCase()
-            return voornaam.toLowerCase().includes(s) ||
-                achternaam.toLowerCase().includes(s)
+            return voornaam.toLowerCase().search(s) >= 0 ||
+                achternaam.toLowerCase().search(s) >= 0
         }
     }
 
