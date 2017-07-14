@@ -21,6 +21,7 @@ saveload.save = function (id) {
   $.post('service/save', text, function (resp) {
     data.output.text(resp)
   }).fail(function (e) {
+    console.log(e)
     data.output.text(e['status'] + ' ' + e['statusText'])
   })
 }
@@ -31,6 +32,7 @@ saveload.load = function (id) {
   $.get('service/load', function (resp) {
     data.output.text(resp)
   }).fail(function (e) {
+    console.log(e)
     data.output.text(e['status'] + ' ' + e['statusText'])
   })
 }
