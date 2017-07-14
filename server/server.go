@@ -25,7 +25,7 @@ var (
 
 func usage() {
 	fmt.Printf(`
-Usage: %s au|vue
+Usage: %s au|nf|vue
 
 `, os.Args[0])
 }
@@ -39,6 +39,8 @@ func main() {
 	switch os.Args[1] {
 	case "au":
 		prefix = "../aurelia/dist"
+	case "nf":
+		prefix = "../no-platform/dist"
 	case "vue":
 		prefix = "../vue/dist"
 		prune = "/kleiweg/dash/vue"
