@@ -21,11 +21,12 @@ var (
 	x      = util.CheckErr
 	prefix string
 	prune  string
+	cache  bool
 )
 
 func usage() {
 	fmt.Printf(`
-Usage: %s au|nf|vue
+Usage: %s au|nf|nf.dev|vue
 
 `, os.Args[0])
 }
@@ -41,6 +42,9 @@ func main() {
 		prefix = "../aurelia/dist"
 	case "nf":
 		prefix = "../no-platform/dist"
+		cache = true
+	case "nf.dev":
+		prefix = "../no-platform/devel"
 	case "vue":
 		prefix = "../vue/dist"
 		prune = "/kleiweg/dash/vue"
@@ -86,7 +90,9 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 func static(w http.ResponseWriter, url string) {
 
-	//w.Header().Set("Cache-Control", "public, max-age=86400")
+	if cache {
+		w.Header().Set("Cache-Control", "public, max-age=86400")
+	}
 
 	filename := path.Join(prefix, url)
 	fi, err := os.Stat(filename)
