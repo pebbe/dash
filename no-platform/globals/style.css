@@ -1,4 +1,3 @@
-/* begin global style */
 * {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -13,4 +12,3 @@ body {
   background-color: #e0e0e8;
   font-family: sans-serif;
 }
-/* end global style */

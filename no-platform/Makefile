@@ -6,8 +6,7 @@ devel: devel/index.html
 dist/index.html: devel/index.html
 	rm -fr dist
 	mkdir dist
-	for i in devel/*.html;do node_modules/.bin/html-minifier --collapse-whitespace --remove-comments -o dist/`basename $$i` $$i; done
-	perl -p -e 's!/\*.*?\*/!!gs' devel/style.css | node_modules/.bin/html-minifier --collapse-whitespace > dist/style.css
+	for i in devel/*.html devel/*.css; do node_modules/.bin/html-minifier --collapse-whitespace --remove-comments -o dist/`basename $$i` $$i; done
 	node_modules/.bin/uglifyjs < devel/script.js > dist/script.js
 	cp -a devel/static dist
 

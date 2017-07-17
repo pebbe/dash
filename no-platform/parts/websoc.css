@@ -1,8 +1,6 @@
-/* begin websoc */
 .websoc > div {
     margin: 1em 0px;
 }
 .websoc .error {
     font-weight: bold;
 }
-/* end websoc */

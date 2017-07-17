@@ -135,5 +135,5 @@ func doPart(s string) string {
 			return translate[s[2:len(s)-2]]
 		})
 
-	return html
+	return "<!-- begin " + m[1] + " -->\n" + html + "\n<!-- end " + m[1] + " -->\n"
 }
