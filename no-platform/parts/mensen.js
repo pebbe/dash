@@ -24,6 +24,8 @@ mensen.Init = function (v) {
     mensen.data[v.id] = {}
     var data = mensen.data[v.id]
 
+    data.nomatchClass = v.nomatchClass || "nomatch1"
+
     data.tbody = $('#' + v.id + ' tbody')
     data.input = $('#' + v.id + ' input')
     data.input.on('keyup', function () { mensen.zoeken(v.id) })
@@ -115,9 +117,9 @@ mensen.zoeken = function (id) {
     var data = mensen.data[id]
     data.searchText = data.input.val()
     for (var i = 0; i < data.lijst.length; i++) {
-        data.lijst[i].tr.removeClass("nomatch")
+        data.lijst[i].tr.removeClass(data.nomatchClass)
         if (!data.lijst[i].matches(data.searchText)) {
-            data.lijst[i].tr.addClass("nomatch")
+            data.lijst[i].tr.addClass(data.nomatchClass)
         }
     }
     mensen.save(id)

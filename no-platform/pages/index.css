@@ -27,9 +27,4 @@ body.home .container>div {
 body.home .container>div>h2 {
   font-weight: normal;
 }
-
-body.home #p5 .nomatch {
-  display: table-row;
-  color: lightgrey;
-}
 /* end index */
