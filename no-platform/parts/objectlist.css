@@ -1,0 +1,23 @@
+/* begin objectlist */
+.objectlist>div {
+  padding: .5em;
+  margin: .5em 0px;
+  border: 1px solid grey;
+}
+.objectlist td {
+  color: white;
+  padding: 1em;
+}
+.objectlist .col1 {
+  background-color: red;
+}
+.objectlist .col2 {
+  background-color: green;
+}
+.objectlist .col3 {
+  background-color: blue;
+}
+.objectlist .template {
+  display: none
+}
+/* end objectlist */
