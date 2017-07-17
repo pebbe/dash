@@ -3,6 +3,11 @@
 var $ = require("jquery");
 
 window.klok = {}
+
+/*
+ * parameters:
+ *   - id
+ */
 window.klok.Init = function (v) {
   var u = $('#' + v.id + '_uur')
   var m = $('#' + v.id + '_min')

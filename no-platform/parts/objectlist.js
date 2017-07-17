@@ -3,6 +3,11 @@
 var $ = require("jquery");
 
 var objectlist = {}
+
+/*
+ * parameters:
+ *   - id
+ */
 objectlist.Init = function (v) {
     objectlist.create(v.id, 1, "aap", "noot", "mies")
     objectlist.create(v.id, 2, "rood", "groen", "blauw")

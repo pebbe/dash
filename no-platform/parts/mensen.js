@@ -6,6 +6,11 @@ var mensen = {}
 
 mensen.data = {}
 
+/*
+ * parameters:
+ *   - id
+ *   - nomatchClass
+ */
 mensen.Init = function (v) {
     function Mens(voornaam, achternaam, achtersort) {
         this.voornaam = voornaam

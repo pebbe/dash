@@ -6,6 +6,10 @@ var saveload = {}
 
 saveload.data = {}
 
+/*
+ * parameters:
+ *   - id
+ */
 saveload.Init = function (v) {
   saveload.data[v.id] = {}
   var data = saveload.data[v.id]

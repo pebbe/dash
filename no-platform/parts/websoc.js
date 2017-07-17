@@ -3,6 +3,11 @@
 var $ = require("jquery");
 
 window.websoc = {}
+
+/*
+ * parameters:
+ *   - id
+ */
 window.websoc.Init = function (v) {
   var msg = $('#' + v.id + ' .message')
   var err = $('#' + v.id + ' .error')
