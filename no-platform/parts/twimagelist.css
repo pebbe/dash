@@ -1,7 +1,12 @@
 .twimagelist img {
   height: 400px;
   width: auto;
-  border: 0px;
+  border: 2px solid grey;
+  padding: .5em;
+  background-color: white;
+}
+.twimagelist img:hover {
+  border: 2px solid blue;
 }
 .twimagelist .template {
   display: none
