@@ -1,9 +1,14 @@
+.twimagelist {
+  text-align: center;
+}
 .twimagelist>div {
   display: inline;
 }
 .twimagelist img {
-  height: 400px;
   width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 320px;
   border: 2px solid grey;
   padding: .5em;
   background-color: white;
