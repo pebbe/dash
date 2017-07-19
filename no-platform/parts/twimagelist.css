@@ -1,0 +1,8 @@
+.twimagelist img {
+  height: 400px;
+  width: auto;
+  border: 0px;
+}
+.twimagelist .template {
+  display: none
+}
