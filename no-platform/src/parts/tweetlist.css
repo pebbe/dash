@@ -1,3 +1,7 @@
+.tweetlist {
+  max-width: 60em;
+  margin: 0px auto;
+}
 .tweetlist>table {
   background-color: white;
   padding: .5em;
