@@ -11,8 +11,8 @@ var twimagelist = {}
 twimagelist.Init = function (v) {
   $.get('static/twimages.json', function (resp) {
     var images = JSON.parse(resp)
-    for (var i = 0; i < images.images.length && i < 20; i++) {
-      twimagelist.create(v.id, i, images.images[i])
+    for (var i = 0; i < images.length && i < 20; i++) {
+      twimagelist.create(v.id, i, images[i])
     }
   }).fail(function (e) {
     twimagelist.error(v.id, e)
