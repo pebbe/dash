@@ -68,7 +68,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 	url := path.Clean("/" + p)[1:]
 
-	if !strings.HasPrefix(url, "service/") && strings.HasPrefix(url, "bin/") {
+	if !strings.HasPrefix(url, "service/") && !strings.HasPrefix(url, "bin/") {
 		static(w, url)
 		return
 	}
