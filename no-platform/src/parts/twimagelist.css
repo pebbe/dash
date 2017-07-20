@@ -1,9 +1,15 @@
 .twimagelist {
   text-align: center;
 }
-.twimagelist>div {
-  display: inline;
-  margin: 1px;
+.twimagelist>a {
+  display: inline-block;
+  margin: .1em .2em;
+}
+.twimagelist .error {
+  margin: 1em;
+  padding: 1em 2em;
+  border: 2px solid red;
+  background-color: white;
 }
 .twimagelist img {
   width: auto;
