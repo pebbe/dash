@@ -3,6 +3,7 @@
 }
 .twimagelist>div {
   display: inline;
+  margin: 1px;
 }
 .twimagelist img {
   width: auto;
