@@ -32,7 +32,7 @@ func main() {
 	fp, err := os.Create(filepath.Join(basedir, "devel", "script.js.in"))
 	x(err)
 	for _, dirname := range []string{"pages", "parts"} {
-		p := filepath.Join(basedir, dirname)
+		p := filepath.Join(basedir, "src", dirname)
 		fis, err := ioutil.ReadDir(p)
 		x(err)
 		for _, fi := range fis {
@@ -46,7 +46,7 @@ func main() {
 	}
 	fp.Close()
 
-	p := filepath.Join(basedir, "globals", "settings.json")
+	p := filepath.Join(basedir, "src", "globals", "settings.json")
 	b, err := ioutil.ReadFile(p)
 	x(err)
 	var v map[string]interface{}
@@ -55,7 +55,7 @@ func main() {
 		globals[key] = fmt.Sprint(val)
 	}
 
-	p = filepath.Join(basedir, "pages")
+	p = filepath.Join(basedir, "src", "pages")
 	fis, err := ioutil.ReadDir(p)
 	x(err)
 	for _, fi := range fis {
@@ -67,7 +67,7 @@ func main() {
 }
 
 func doPage(page string) {
-	filename := filepath.Join(basedir, "pages", page+".html")
+	filename := filepath.Join(basedir, "src", "pages", page+".html")
 	b, err := ioutil.ReadFile(filename)
 	x(err)
 	html := string(b)
@@ -124,7 +124,7 @@ func doPart(s string) string {
 		}
 	}
 
-	filename := filepath.Join(basedir, "parts", m[1]+".html")
+	filename := filepath.Join(basedir, "src", "parts", m[1]+".html")
 	b, err := ioutil.ReadFile(filename)
 	x(err)
 

@@ -68,7 +68,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 	url := path.Clean("/" + p)[1:]
 
-	if !strings.HasPrefix(url, "service/") {
+	if !strings.HasPrefix(url, "service/") && strings.HasPrefix(url, "bin/") {
 		static(w, url)
 		return
 	}
@@ -78,9 +78,9 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	switch url {
 	case "service/ws":
 		ws(w, r)
-	case "service/save":
+	case "service/save", "bin/save":
 		save(w, r)
-	case "service/load":
+	case "service/load", "bin/load":
 		load(w, r)
 	default:
 		http.Error(w, "Not found", http.StatusNotFound)
