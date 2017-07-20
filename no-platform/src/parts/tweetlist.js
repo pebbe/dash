@@ -10,7 +10,12 @@ var tweetlist = {}
  */
 tweetlist.Init = function (v) {
   $.get('static/tweets.json', function (resp) {
-    var tweets = JSON.parse(resp)
+    var tweets
+    try {
+      tweets = JSON.parse(resp)
+    } catch (e) {
+      tweets = resp
+    }
     for (var i = 0; i < tweets.length && i < 20; i++) {
       tweetlist.create(v.id, i, tweets[i])
     }
