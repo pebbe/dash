@@ -2,12 +2,15 @@
 
 var $ = require("jquery");
 
-window.menu = {}
+var menu = {}
 
 /*
  * parameters:
  *   - current
  */
-window.menu.Init = function (v) {
+menu.Init = function (v) {
   $('#nav [href="' + v.current + '"]').parent().addClass('current');
 }
+
+window.app = window.app || {}
+window.app.menu = menu

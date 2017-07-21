@@ -2,13 +2,16 @@
 
 var $ = require("jquery");
 
-window.multi2 = {}
+var multi2 = {}
 
 /*
  * parameters:
  *   - id
  *   - message
  */
-window.multi2.Init = function (v) {
+multi2.Init = function (v) {
   $('#' + v.id).text(v.message + " (met box)");
 }
+
+window.app = window.app || {}
+window.app.multi2 = multi2

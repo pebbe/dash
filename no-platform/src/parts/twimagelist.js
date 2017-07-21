@@ -38,4 +38,5 @@ twimagelist.error = function (id, e) {
   $(err).addClass("error").text(e.status + " " + e.statusText).appendTo("#" + id)
 }
 
-window.twimagelist = twimagelist
+window.app = window.app || {}
+window.app.twimagelist = twimagelist

@@ -39,4 +39,5 @@ saveload.load = function (id) {
   })
 }
 
-window.saveload = saveload
+window.app = window.app || {}
+window.app.saveload = saveload

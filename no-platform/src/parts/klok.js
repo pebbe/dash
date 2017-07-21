@@ -2,13 +2,13 @@
 
 var $ = require("jquery");
 
-window.klok = {}
+var klok = {}
 
 /*
  * parameters:
  *   - id
  */
-window.klok.Init = function (v) {
+klok.Init = function (v) {
   var u = $('#' + v.id + '_uur')
   var m = $('#' + v.id + '_min')
   var s = $('#' + v.id + '_sec')
@@ -31,3 +31,6 @@ window.klok.Init = function (v) {
   update()
   setInterval(update, 1000)
 }
+
+window.app = window.app || {}
+window.app.klok = klok

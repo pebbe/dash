@@ -140,4 +140,5 @@ mensen.save = function (id) {
         }))
 }
 
-window.mensen = mensen
+window.app = window.app || {}
+window.app.mensen = mensen

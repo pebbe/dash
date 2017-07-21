@@ -25,4 +25,5 @@ objectlist.create = function  (id, n, c1, c2, c3) {
     o.appendTo("#" + id)
 }
 
-window.objectlist = objectlist
+window.app = window.app || {}
+window.app.objectlist = objectlist

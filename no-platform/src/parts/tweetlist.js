@@ -48,4 +48,5 @@ tweetlist.error = function (id, e) {
   o.appendTo("#" + id + " table")
 }
 
-window.tweetlist = tweetlist
+window.app = window.app || {}
+window.app.tweetlist = tweetlist

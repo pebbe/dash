@@ -2,13 +2,13 @@
 
 var $ = require("jquery");
 
-window.websoc = {}
+var websoc = {}
 
 /*
  * parameters:
  *   - id
  */
-window.websoc.Init = function (v) {
+websoc.Init = function (v) {
   var msg = $('#' + v.id + ' .message')
   var err = $('#' + v.id + ' .error')
 
@@ -50,3 +50,6 @@ window.websoc.Init = function (v) {
   }
 
 }
+
+window.app = window.app || {}
+window.app.websoc = websoc

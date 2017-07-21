@@ -96,7 +96,7 @@ func doPage(page string) {
 
 	var buffer bytes.Buffer
 	for _, v := range pagefiles {
-		fmt.Fprintf(&buffer, "%s.Init(%s);\n", v[0], v[1])
+		fmt.Fprintf(&buffer, "app.%s.Init(%s);\n", v[0], v[1])
 	}
 	i := strings.LastIndex(html, "</body>")
 	html = html[:i] + `

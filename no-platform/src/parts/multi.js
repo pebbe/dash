@@ -2,13 +2,16 @@
 
 var $ = require("jquery");
 
-window.multi = {}
+var multi = {}
 
 /*
  * parameters:
  *   - id
  *   - message
  */
-window.multi.Init = function (v) {
+multi.Init = function (v) {
   $('#' + v.id).text(v.message + " (zonder box)");
 }
+
+window.app = window.app || {}
+window.app.multi = multi
