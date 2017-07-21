@@ -31,6 +31,18 @@ func main() {
 
 	fp, err := os.Create(filepath.Join(basedir, "devel", "script.js.in"))
 	x(err)
+
+	p := filepath.Join(basedir, "src", "globals")
+	fis, err := ioutil.ReadDir(p)
+	x(err)
+	for _, fi := range fis {
+		filename := fi.Name()
+		if strings.HasSuffix(filename, ".js") {
+			base := filename[:len(filename)-3]
+			fmt.Fprintf(fp, "var Global__%s = require(\"%s\")\n", base, filepath.Join(p, base))
+		}
+	}
+
 	for _, dirname := range []string{"pages", "parts"} {
 		p := filepath.Join(basedir, "src", dirname)
 		fis, err := ioutil.ReadDir(p)
@@ -39,14 +51,16 @@ func main() {
 			filename := fi.Name()
 			if strings.HasSuffix(filename, ".js") {
 				base := filename[:len(filename)-3]
-				jsfiles[base] = true
-				fmt.Fprintf(fp, "var %s = require(\"%s\")\n", base, filepath.Join(p, base))
+				if !jsfiles[base] {
+					jsfiles[base] = true
+					fmt.Fprintf(fp, "var %s = require(\"%s\")\n", base, filepath.Join(p, base))
+				}
 			}
 		}
 	}
 	fp.Close()
 
-	p := filepath.Join(basedir, "src", "globals", "settings.json")
+	p = filepath.Join(basedir, "src", "globals", "settings.json")
 	b, err := ioutil.ReadFile(p)
 	x(err)
 	var v map[string]interface{}
@@ -56,7 +70,7 @@ func main() {
 	}
 
 	p = filepath.Join(basedir, "src", "pages")
-	fis, err := ioutil.ReadDir(p)
+	fis, err = ioutil.ReadDir(p)
 	x(err)
 	for _, fi := range fis {
 		name := fi.Name()
