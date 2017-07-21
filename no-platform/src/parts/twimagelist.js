@@ -29,7 +29,7 @@ twimagelist.create = function (id, n, image) {
   o.attr("id", id + "-" + n)
   o.removeClass("template")
   $(o).attr("href", image.link)
-  $(o).find("img").attr("src", image.img)
+  $(o).find("img").attr("src", image.img).attr("width", image.w).attr("height", image.h)
   o.appendTo("#" + id)
 }
 
