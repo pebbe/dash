@@ -34,8 +34,7 @@ twimagelist.create = function (id, n, image) {
 }
 
 twimagelist.error = function (id, e) {
-  var err = document.createElement("div");
-  $(err).addClass("error").text(e.status + " " + e.statusText).appendTo("#" + id)
+  $('<div></div>').addClass('error').text(e.status + ' ' + e.statusText).appendTo('#' + id)
 }
 
 window.app = window.app || {}

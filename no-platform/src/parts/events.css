@@ -1,0 +1,53 @@
+@keyframes events-animation-show {
+  from {
+     height: 0px;
+     margin-top: 0px;
+     padding: 0px 1em;
+     border: 0px solid grey;
+     font-size: 0%;
+     opacity: 0;
+  }
+  to { 
+    height: auto;
+    margin-top: 1em;
+    padding: 1em;
+    border: 1px solid grey;
+    font-size: 100%;
+    opacity: 1;
+   }
+}
+
+@keyframes events-animation-hide {
+  to {
+     height: 0px;
+     margin-top: 0px;
+     padding: 0px 1em;
+     border: 0px solid grey;
+     font-size: 0%;
+     opacity: 0;
+  }
+  from { 
+    height: auto;
+    margin-top: 1em;
+    padding: 1em;
+    border: 1px solid grey;
+    font-size: 100%;
+    opacity: 1;
+   }
+}
+
+.events>div {
+  margin-top: 1em;
+  padding: 1em;
+  border: 1px solid grey;
+  animation-name: events-animation-show;
+  animation-duration: 1s;
+}
+.events>div.hidden {
+  height: 0px;
+  margin-top: 0px;
+  padding: 0px 1em;
+  opacity: 0;
+  animation-name: events-animation-hide;
+  animation-duration: 1s;
+}

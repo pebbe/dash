@@ -11,6 +11,15 @@ saveload.data = {}
  *   - id
  */
 saveload.Init = function (v) {
+
+  $('#' + v.id + ' .save').on('click', function (ev) {
+    saveload.save(v.id)
+  })
+
+  $('#' + v.id + ' .load').on('click', function (ev) {
+    saveload.load(v.id)
+  })
+
   saveload.data[v.id] = {}
   var data = saveload.data[v.id]
   data.text = $('#' + v.id + ' input')

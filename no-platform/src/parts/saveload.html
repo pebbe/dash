@@ -1,6 +1,10 @@
+<!--
+  parameters:
+    - id
+-->
 <div id="{{id}}" class="saveload">
-  <button onClick="app.saveload.save('{{id}}')">save</button>
+  <button class="save">save</button>
   <input type="text">
   <hr>
-  <button onClick="app.saveload.load('{{id}}')">load</button> <span class="loaded"></span>
+  <button class="load">load</button> <span class="loaded"></span>
 </div>
