@@ -18,7 +18,8 @@ websoc.Init = function (v) {
   var upcase = true
 
   if (window['WebSocket']) {
-    conn = new WebSocket('ws://' + window.location.host + '/service/ws')
+    //conn = new WebSocket('ws://' + window.location.host + '/service/ws')
+    conn = new WebSocket('ws://zardoz.service.rug.nl:11000/service/ws')
     socketClosed = false
     conn.onclose = function (evt) {
       socketClosed = true

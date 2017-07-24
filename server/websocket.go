@@ -18,7 +18,9 @@ type msg struct {
 var (
 	warn     = util.WarnErr
 	words    = []string{"aap", "noot", "mies", "wim", "zus", "jet"}
-	upgrader = websocket.Upgrader{} // use default options
+	upgrader = websocket.Upgrader{
+		CheckOrigin: func(r *http.Request) bool { return true },
+	}
 )
 
 func ws(w http.ResponseWriter, r *http.Request) {
