@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo Content-type: text/plain
+echo 'Content-type: text/plain; charset=utf-8'
 echo
-echo This is saved text
+cat /tmp/dash.saveload.`id -u`

@@ -76,6 +76,8 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-cache")
 	w.Header().Add("Pragma", "no-cache")
 	switch url {
+	case "service/up":
+		up(w, r)
 	case "service/ws":
 		ws(w, r)
 	case "service/save", "bin/save":
@@ -136,4 +138,9 @@ func static(w http.ResponseWriter, url string) {
 	}
 
 	w.Write(data)
+}
+
+func up(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.Write([]byte("dash\n"))
 }
