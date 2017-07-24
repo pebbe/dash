@@ -9,7 +9,7 @@ var twimagelist = {}
  *   - id
  */
 twimagelist.Init = function (v) {
-  $.get('static/twimages.json', function (resp) {
+  $.get('https://pebbe001.appspot.com/twimages', function (resp) {
     var images
     try {
       images = JSON.parse(resp)

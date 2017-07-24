@@ -9,7 +9,7 @@ var tweetlist = {}
  *   - id
  */
 tweetlist.Init = function (v) {
-  $.get('static/tweets.json', function (resp) {
+  $.get('https://pebbe001.appspot.com/tweets', function (resp) {
     var tweets
     try {
       tweets = JSON.parse(resp)
