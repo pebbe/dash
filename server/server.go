@@ -41,10 +41,10 @@ func main() {
 	case "au":
 		prefix = "../aurelia/dist"
 	case "nf":
-		prefix = "../no-platform/dist"
+		prefix = "../no-framework/dist"
 		cache = true
 	case "nf.dev":
-		prefix = "../no-platform/devel"
+		prefix = "../no-framework/devel"
 	case "vue":
 		prefix = "../vue/dist"
 		prune = "/kleiweg/dash/vue"
