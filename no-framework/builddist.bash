@@ -12,7 +12,7 @@ do
     done
 	perl -p -e 's!/\*.*?\*/!!gs' devel/$lang/style.css | node_modules/.bin/html-minifier --collapse-whitespace > dist/$lang/style.css
 	node_modules/.bin/uglifyjs < devel/$lang/script.js > dist/$lang/script.js
-	cp -a devel/$lang/bin dist/$lang
-	cp -a devel/$lang/static dist/$lang
 done
+cp -a devel/bin dist
+cp -a devel/static dist
 cp devel/*.* dist

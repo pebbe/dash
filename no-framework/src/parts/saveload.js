@@ -31,7 +31,7 @@ saveload.save = function (id) {
   var text = data.text.val()
   data.text.val('')
   data.output.text('')
-  $.post('bin/save', text, function (resp) {
+  $.post('../bin/save', text, function (resp) {
     data.output.text(resp)
   }).fail(function (e) {
     data.output.text(e['status'] + ' ' + e['statusText'])
@@ -41,7 +41,7 @@ saveload.save = function (id) {
 saveload.load = function (id) {
   var data = saveload.data[id]
   data.output.text('')
-  $.get('bin/load', function (resp) {
+  $.get('../bin/load', function (resp) {
     data.output.text(resp)
   }).fail(function (e) {
     data.output.text(e['status'] + ' ' + e['statusText'])
