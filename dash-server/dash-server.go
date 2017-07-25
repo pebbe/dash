@@ -20,13 +20,12 @@ const (
 var (
 	x      = util.CheckErr
 	prefix string
-	prune  string
 	cache  bool
 )
 
 func usage() {
 	fmt.Printf(`
-Usage: %s au|nf|nf.dev|vue
+Usage: %s au|nf|nf.dev
 
 `, os.Args[0])
 }
@@ -45,9 +44,6 @@ func main() {
 		cache = true
 	case "nf.dev":
 		prefix = "../no-framework/devel"
-	case "vue":
-		prefix = "../vue/dist"
-		prune = "/kleiweg/dash/vue"
 	default:
 		usage()
 		return
@@ -61,12 +57,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 	log.Println(r.RemoteAddr, r.URL.Path)
 
-	p := r.URL.Path
-	if prune != "" && strings.HasPrefix(p, prune) {
-		p = p[len(prune):]
-	}
-
-	url := path.Clean("/" + p)[1:]
+	url := path.Clean("/" + r.URL.Path)[1:]
 
 	if !strings.HasPrefix(url, "service/") && !strings.HasPrefix(url, "bin/") {
 		static(w, url)
