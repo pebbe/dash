@@ -28,3 +28,4 @@ do
     cp -a src/static devel/$lang
 
 done
+cp src/root/*.* devel

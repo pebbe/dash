@@ -14,7 +14,8 @@ devel/en/index.html: \
 		src/parts/* \
 		src/i18n/*.json \
 		src/static/* \
-		src/bin/*
+		src/bin/* \
+		src/root/*.*
 	./builddevel.bash
 
 tools/builder: tools/builder.go

@@ -15,3 +15,4 @@ do
 	cp -a devel/$lang/bin dist/$lang
 	cp -a devel/$lang/static dist/$lang
 done
+cp devel/*.* dist
