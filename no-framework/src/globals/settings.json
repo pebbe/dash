@@ -1,3 +1,6 @@
 {
-    "title": "No Platform - Dash"
+    "globals": {
+        "title": "_(No Framework)_ - Dash"
+    },
+    "i18n": ["en", "nl"]
 }

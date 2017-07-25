@@ -2,7 +2,7 @@ nav {
   background-color: grey;
   border-bottom: 1px solid black;
 }
-nav div {
+nav div.left {
   display: inline-block;
   background-color: darkgrey;
   border-right: 2px solid black;
@@ -10,18 +10,25 @@ nav div {
   width: 8em;
 }
 
-nav a {
+nav div.left a {
   padding: .5em 0px .5em 1em;
   color: black;
   display: block;
   text-decoration: none;
 }
 nav .current a,
-nav a:hover {
+nav div.left a:hover {
   background-color: lightgrey;
   color: black;
 }
-
 nav .current {
   font-weight: bold;
+}
+nav div.lang {
+  padding: .5em 2em;
+  float: right;
+}
+nav div.lang a {
+  text-decoration: none;
+  color: white;
 }

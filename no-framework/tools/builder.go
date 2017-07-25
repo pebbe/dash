@@ -13,6 +13,10 @@ import (
 	"strings"
 )
 
+type Settings struct {
+	Globals map[string]string
+}
+
 var (
 	rePart = regexp.MustCompile(`<!--\[\[([-_a-zA-Z0-9]+)(\s*)(.*?)\]\]-->`)
 	reVar  = regexp.MustCompile(`{{[-_a-zA-Z0-9]+}}`)
@@ -21,15 +25,15 @@ var (
 
 	x = util.CheckErr
 
-	jsfiles = make(map[string]bool)
-	globals = make(map[string]string)
+	jsfiles  = make(map[string]bool)
+	settings Settings
 )
 
 func main() {
 
 	basedir = os.Args[1]
 
-	fp, err := os.Create(filepath.Join(basedir, "devel", "script.js.in"))
+	fp, err := os.Create(filepath.Join(basedir, "build", "script.js.in"))
 	x(err)
 	for _, dirname := range []string{"pages", "parts"} {
 		p := filepath.Join(basedir, "src", dirname)
@@ -41,7 +45,11 @@ func main() {
 				base := filename[:len(filename)-3]
 				if !jsfiles[base] {
 					jsfiles[base] = true
-					fmt.Fprintf(fp, "var %s = require(\"%s\")\n", base, filepath.Join(p, base))
+					fmt.Fprintf(
+						fp,
+						"var %s = require(\"%s\")\n",
+						base,
+						filepath.Join(basedir, "build", "_(LANG)_", "parts", base))
 				}
 			}
 		}
@@ -51,11 +59,7 @@ func main() {
 	p := filepath.Join(basedir, "src", "globals", "settings.json")
 	b, err := ioutil.ReadFile(p)
 	x(err)
-	var v map[string]interface{}
-	x(json.Unmarshal(b, &v))
-	for key, val := range v {
-		globals[key] = fmt.Sprint(val)
-	}
+	x(json.Unmarshal(b, &settings))
 
 	p = filepath.Join(basedir, "src", "pages")
 	fis, err := ioutil.ReadDir(p)
@@ -76,7 +80,7 @@ func doPage(page string) {
 
 	html = reVar.ReplaceAllStringFunc(html,
 		func(s string) string {
-			return globals[s[2:len(s)-2]]
+			return settings.Globals[s[2:len(s)-2]]
 		})
 
 	pagefiles := make([][2]string, 0)
@@ -105,7 +109,7 @@ func doPage(page string) {
 ` + buffer.String() + `</script>
 ` + html[i:]
 
-	fp, err := os.Create(filepath.Join(basedir, "devel", page+".html"))
+	fp, err := os.Create(filepath.Join(basedir, "build", page+".html"))
 	x(err)
 	fp.Write([]byte(html))
 	fp.Close()
@@ -115,7 +119,7 @@ func doPart(s string) string {
 	m := rePart.FindStringSubmatch(s)
 
 	translate := make(map[string]string)
-	for key, value := range globals {
+	for key, value := range settings.Globals {
 		translate[key] = value
 	}
 	if m[3] != "" {

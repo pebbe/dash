@@ -10,7 +10,7 @@ var multi = {}
  *   - message
  */
 multi.Init = function (v) {
-  $('#' + v.id).text(v.message + " (zonder box)");
+  $('#' + v.id).text(v.message + " (_(without box)_)");
 }
 
 window.app = window.app || {}
