@@ -9,7 +9,7 @@ var objectlist = {}
  *   - id
  */
 objectlist.Init = function (v) {
-    objectlist.create(v.id, 1, "aap", "noot", "mies")
+    objectlist.create(v.id, 1, "_(Alpha)_", "_(Bravo)_", "_(Charlie)_")
     objectlist.create(v.id, 2, "_(red)_", "_(green)_", "_(blue)_")
     objectlist.create(v.id, 3, "abc", "pqr", "xyz")
 }
