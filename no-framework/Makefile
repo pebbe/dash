@@ -12,14 +12,29 @@ devel/en/index.html: \
 		src/globals/* \
 		src/pages/* \
 		src/parts/* \
-		src/i18n/*.json \
+		src/i18n/en.json \
+		src/i18n/nl.json \
 		src/static/* \
 		src/bin/* \
 		src/root/*.*
 	./builddevel.bash
 
+src/i18n/nl.json: \
+		tools/i18n \
+		src/globals/* \
+		src/pages/* \
+		src/parts/*
+	tools/i18n < src/i18n/nl.json \
+		src/globals/* \
+		src/pages/* \
+		src/parts/* > src/i18n/nl.json.tmp && \
+			mv src/i18n/nl.json.tmp src/i18n/nl.json
+
 tools/builder: tools/builder.go
 	make -C tools builder
+
+tools/i18n: tools/i18n.go
+	make -C tools i18n
 
 tools/translate: tools/translate.go
 	make -C tools translate
