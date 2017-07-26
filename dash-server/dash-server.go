@@ -125,28 +125,34 @@ func static(w http.ResponseWriter, r *http.Request, url string) {
 
 	switch filetype {
 	case ".html":
-		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		ct(w, "text/html; charset=utf-8")
 	case ".txt":
-		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		ct(w, "text/plain; charset=utf-8")
 	case ".js":
-		w.Header().Set("Content-Type", "application/javascript")
+		ct(w, "application/javascript")
 	case ".json":
-		w.Header().Set("Content-Type", "application/json")
+		ct(w, "application/json")
 	case ".map":
-		w.Header().Set("Content-Type", "application/json")
+		ct(w, "application/json")
 	case ".css":
-		w.Header().Set("Content-Type", "text/css")
+		ct(w, "text/css")
 	case ".gif":
-		w.Header().Set("Content-Type", "image/gif")
+		ct(w, "image/gif")
 	case ".png":
-		w.Header().Set("Content-Type", "image/png")
+		ct(w, "image/png")
 	case ".jpg":
-		w.Header().Set("Content-Type", "image/jpeg")
+		ct(w, "image/jpeg")
 	case ".ico":
-		w.Header().Set("Content-Type", "image/x-icon")
+		ct(w, "image/x-icon")
+	case ".svg":
+		ct(w, "image/svg+xml")
 	}
 
 	w.Write(data)
+}
+
+func ct(w http.ResponseWriter, s string) {
+	w.Header().Set("Content-Type", s)
 }
 
 func up(w http.ResponseWriter, r *http.Request) {

@@ -25,8 +25,8 @@ evs.Init = function (v) {
       var div = $('<div></div>')
         .text('[' + v.id + '] ~(Message from)~ ' + arg.id + ': ' + arg.msg)
         .appendTo(me)
-      setTimeout(function () { div.addClass('hidden') }, 5000)
-      setTimeout(function () { div.remove() }, 6000)
+      setTimeout(function () { div.addClass('hidden') }, 10000)
+      setTimeout(function () { div.remove() }, 11000)
     }
   })
 }
