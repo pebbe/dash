@@ -1,3 +1,3 @@
 <script>
-location.assign("nl")
+location.assign("nl/")
 </script>
