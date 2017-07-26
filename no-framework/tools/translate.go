@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	re = regexp.MustCompile(`_\(.*?\)_`)
+	re = regexp.MustCompile(`~\(.*?\)~`)
 	x  = util.CheckErr
 )
 

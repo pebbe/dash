@@ -10,7 +10,7 @@ var multi2 = {}
  *   - message
  */
 multi2.Init = function (v) {
-  $('#' + v.id).text(v.message + " (_(with box)_)");
+  $('#' + v.id).text(v.message + " (~(with box)~)");
 }
 
 window.app = window.app || {}

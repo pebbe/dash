@@ -49,7 +49,7 @@ func main() {
 						fp,
 						"var %s = require(\"%s\")\n",
 						base,
-						filepath.Join(basedir, "build", "_(LANG)_", "parts", base))
+						filepath.Join(basedir, "build", "~(LANG)~", "parts", base))
 				}
 			}
 		}
