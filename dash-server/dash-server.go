@@ -173,7 +173,7 @@ func ext(r *http.Request) []string {
 		al := strings.Split(acc, ";")
 
 		al[0] = strings.TrimSpace(al[0])
-		lang := "." + reLang.FindString(al[0])
+		lang := "." + strings.ToLower(reLang.FindString(al[0]))
 		if lang == "." {
 			continue
 		}
@@ -201,6 +201,11 @@ func ext(r *http.Request) []string {
 	for i, l := range langs {
 		ss[i+1] = l.language
 	}
+
+	if !seen[".en"] {
+		ss = append(ss, ".en")
+	}
+
 	return ss
 }
 
