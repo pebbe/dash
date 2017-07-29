@@ -56,7 +56,7 @@ func main() {
 	}
 	fp.Close()
 
-	p := filepath.Join(basedir, "src", "globals", "settings.json")
+	p := filepath.Join(basedir, "src", "app.json")
 	b, err := ioutil.ReadFile(p)
 	x(err)
 	x(json.Unmarshal(b, &settings))

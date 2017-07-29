@@ -22,9 +22,7 @@ do
     done
     node_modules/.bin/browserify devel/$lang/script.js.in > devel/$lang/script.js
 
-    cat src/globals/*.css src/pages/*.css src/parts/*.css | tools/translate $langfile > devel/$lang/style.css
+    cat src/*.css src/pages/*.css src/parts/*.css | tools/translate $langfile > devel/$lang/style.css
 
 done
-cp -a src/bin devel
-cp -a src/static devel
-cp src/root/*.* devel
+cp -a src/static/* devel

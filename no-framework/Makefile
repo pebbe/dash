@@ -9,23 +9,23 @@ dist/en/index.html: devel/en/index.html
 devel/en/index.html: \
 		tools/builder \
 		tools/translate \
-		src/globals/* \
+		src/app.* \
 		src/pages/* \
 		src/parts/* \
 		src/i18n/en.json \
 		src/i18n/nl.json \
-		src/static/* \
-		src/bin/* \
-		src/root/*.*
+		src/static/files/* \
+		src/static/bin/* \
+		src/static/*.*
 	./builddevel.bash
 
 src/i18n/nl.json: \
 		tools/i18n \
-		src/globals/* \
+		src/app.* \
 		src/pages/* \
 		src/parts/*
 	tools/i18n < src/i18n/nl.json \
-		src/globals/* \
+		src/app.* \
 		src/pages/* \
 		src/parts/* > src/i18n/nl.json.tmp && \
 			mv src/i18n/nl.json.tmp src/i18n/nl.json
