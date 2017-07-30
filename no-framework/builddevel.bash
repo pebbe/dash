@@ -20,7 +20,7 @@ do
     do
         tools/translate $langfile < $i > build/$lang/parts/`basename $i`
     done
-    node_modules/.bin/browserify devel/$lang/script.js.in > devel/$lang/script.js
+    node_modules/.bin/browserify --debug --outfile devel/$lang/script.js devel/$lang/script.js.in
 
     cat src/*.css src/pages/*.css src/parts/*.css | tools/translate $langfile > devel/$lang/style.css
 
