@@ -1,10 +1,16 @@
 table {
-    width: 100%;
+  width: 100%;
 }
 th {
-    cursor: pointer;
-    border: 1px solid blue;
+  cursor: pointer;
+  border: 1px solid blue;
 }
 th:hover {
-    background-color: yellow;
+  background-color: yellow;
+}
+.match1 .nomatch {
+  display: none;
+}
+.match2 .nomatch {
+  color: lightgrey;
 }

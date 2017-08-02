@@ -1,4 +1,4 @@
-<template bindable="hideStyle">
+<template bindable="matchClass">
     <require from="mensen-lijst.css"></require>
     <table>
         <thead>
@@ -7,8 +7,8 @@
                 <th click.delegate="orderAchternaam()">achternaam</th>
             </tr>
         </thead>
-        <tbody>
-            <tr repeat.for="mens of mensen" css="${mens.matches(searchText) ? '' : (hideStyle || 'display:none')}">
+        <tbody class="${matchClass || 'match1'}">
+            <tr repeat.for="mens of mensen" class="${mens.matches(searchText) ? '' : 'nomatch'}">
                 <td>${mens.voornaam}</td>
                 <td>${mens.achternaam}</td>
             </tr>

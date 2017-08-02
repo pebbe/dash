@@ -2,7 +2,7 @@ import { bindable } from 'aurelia-framework';
 import { Mens } from "./mens";
 
 export class MensenLijst {
-    @bindable hideStyle;
+    @bindable matchClass;
     @bindable idTag;
     constructor() {
         this.mensen = [
