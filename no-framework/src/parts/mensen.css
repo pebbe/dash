@@ -10,9 +10,11 @@
 .mensen th:hover {                                                                                                      
   background-color: yellow;                                                                                     
 }
-.mensen .nomatch1 {
-  display:none;
+.mensen tr.nomatch,
+.mensen .nomatchHide tr.nomatch {
+  display: none;
 }
-.mensen .nomatch2 {
+.mensen .nomatchGrey tr.nomatch {
+  display: table-row;
   color: lightgrey;
 }
