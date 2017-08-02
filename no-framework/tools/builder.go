@@ -19,7 +19,7 @@ type Settings struct {
 
 var (
 	rePart = regexp.MustCompile(`<!--\[\[([-_a-zA-Z0-9]+)(\s*)(.*?)\]\]-->`)
-	reVar  = regexp.MustCompile(`{{[-_a-zA-Z0-9]+}}`)
+	reVar  = regexp.MustCompile(`{{[-_a-zA-Z0-9]+(:.*?)?}}`)
 
 	basedir string
 
@@ -78,10 +78,7 @@ func doPage(page string) {
 	x(err)
 	html := string(b)
 
-	html = reVar.ReplaceAllStringFunc(html,
-		func(s string) string {
-			return settings.Globals[s[2:len(s)-2]]
-		})
+	html = doVars(html, settings.Globals)
 
 	pagefiles := make([][2]string, 0)
 
@@ -136,10 +133,22 @@ func doPart(s string) string {
 
 	html := strings.TrimSpace(string(b))
 
-	html = reVar.ReplaceAllStringFunc(html,
-		func(s string) string {
-			return translate[s[2:len(s)-2]]
-		})
+	html = doVars(html, translate)
 
 	return "<!-- begin " + m[1] + " -->\n" + html + "\n<!-- end " + m[1] + " -->\n"
+}
+
+func doVars(s string, tr map[string]string) string {
+	return reVar.ReplaceAllStringFunc(s,
+		func(s1 string) string {
+			s1 = s1[2 : len(s1)-2]
+			a := strings.SplitN(s1, ":", 2)
+			if len(a) == 2 {
+				if s2 := tr[a[0]]; s2 != "" {
+					return s2
+				}
+				return a[1]
+			}
+			return tr[s1]
+		})
 }
