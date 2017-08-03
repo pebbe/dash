@@ -49,7 +49,7 @@ menu.setAuth = function (v) {
     }
   } else {
     if (menu.need_auth.indexOf(v.current) >= 0) {
-      document.location = '.'
+      window.location.replace('.')
       return
     }
     $('#login').removeClass('hidden')
