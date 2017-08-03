@@ -118,14 +118,21 @@ mensen.achternaam = function (id) {
 
 mensen.zoeken = function (id) {
     var data = mensen.data[id]
-    data.searchText = data.input.val()
-    for (var i = 0; i < data.lijst.length; i++) {
-        data.lijst[i].tr.removeClass('nomatch')
-        if (!data.lijst[i].matches(data.searchText)) {
-            data.lijst[i].tr.addClass('nomatch')
-        }
+    if (data.searchtimer) {
+        clearTimeout(data.searchtimer)
+        data.searchtimer = undefined
     }
-    mensen.save(id)
+    data.searchtimer = setTimeout(function () {
+        data.searchtimer = undefined
+        data.searchText = data.input.val()
+        for (var i = 0; i < data.lijst.length; i++) {
+            data.lijst[i].tr.removeClass('nomatch')
+            if (!data.lijst[i].matches(data.searchText)) {
+                data.lijst[i].tr.addClass('nomatch')
+            }
+        }
+        mensen.save(id)
+    }, 200)
 }
 
 mensen.save = function (id) {
