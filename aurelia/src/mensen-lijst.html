@@ -15,6 +15,6 @@
         </tbody>
     </table>
     <p>
-        zoeken: <input type="text" value.bind="searchText" keyup.trigger="save()">
+        zoeken: <input type="text" value.bind="searchText & debounce" change.trigger="save()">
     </p>
 </template>
