@@ -16,24 +16,36 @@ nav div.left a {
   display: block;
   text-decoration: none;
 }
-nav .current a,
+nav div.current a,
 nav div.left a:hover {
   background-color: lightgrey;
   color: black;
 }
-nav .current {
+nav div.current {
   font-weight: bold;
 }
-nav div.lang {
+
+nav div.right {
   padding: .5em 2em 0px .5em;
   float: right;
 }
-nav div.lang a {
+
+nav div.right a {
   text-decoration: none;
   color: white;
 }
-nav img {
+
+nav div.right span {
+  padding: 0px 1em 0px 1px;
+}
+
+nav div.right img {
   border: 1px solid black;
   height: 1.4em;
   width: auto;
+  vertical-align: middle;
+}
+
+nav .hidden {
+  display: none !important;
 }
