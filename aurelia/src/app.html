@@ -1,8 +1,7 @@
 <template>
     <require from="app.css"></require>
     <nav>
-        <!--TODO: class='current': dit moet beter kunnen-->
-        <div repeat.for="row of router.navigation" class="${('#' + router.currentInstruction.fragment) == row.href ? 'current' : ''}">
+        <div repeat.for="row of router.navigation" class="${row.isActive ? 'current' : ''}">
             <a href.bind="row.href">${row.title}</a>
         </div>
     </nav>

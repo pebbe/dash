@@ -2,7 +2,7 @@ export class Mens {
     constructor(voornaam, achternaam, achtersort) {
         this.voornaam = voornaam;
         this.achternaam = achternaam;
-        this.achtersort = achtersort ? achtersort : achternaam;
+        this.achtersort = achtersort || achternaam;
     }
     matches(substring) {
         let s = substring.toLowerCase()
