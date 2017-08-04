@@ -40,7 +40,8 @@ export class App {
     logout() {
         this.userService.save('')
         this.update()
-        if (!this.router.currentInstruction.config.nav) {
+        let config = this.router.currentInstruction.config
+        if (config.settings && config.settings.auth) {
             this.router.navigate('home')
         }
     }
@@ -56,12 +57,12 @@ class AuthorizeStep {
     }
 
     run(navigationInstruction, next) {
+        // TODO: ik snap dit niet (gekopieerd van website)
         if (navigationInstruction.getAllInstructions().some(i => i.config.settings.auth)) {
-            if (!this.userService.auth()) {
+            if (!this.userService.auth) {
                 return next.cancel(new Redirect('home'))
             }
         }
-
-        return next();
+        return next()
     }
 }

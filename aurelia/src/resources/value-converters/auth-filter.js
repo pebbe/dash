@@ -4,14 +4,14 @@ import { inject } from 'aurelia-framework'
 @inject(UserService)
 export class AuthFilterValueConverter {
 
-  constructor(userService, signaler, ea) {
+  constructor(userService) {
     this.userService = userService
   }
 
   toView(array) {
     let matches = array.filter((item) => {
       if (item.settings && item.settings.auth) {
-        return this.userService.auth()
+        return this.userService.auth
       }
       return true
     })
