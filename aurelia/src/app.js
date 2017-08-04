@@ -28,7 +28,8 @@ export class App {
         config.addAuthorizeStep(step)
         config.map([
             { route: ["", "home"], name: "home", moduleId: "home", nav: true, title: "~(Home)~" },
-            { route: "page2", name: "page2", moduleId: "page-two", nav: true, title: "~(Page 2)~" },
+            { route: "tweets", name: "tweets", moduleId: "tweets", nav: true, title: "~(Tweets)~" },
+            { route: "twimages", name: "twimages", moduleId: "twimages", nav: true, title: "~(Twimages)~" },
             { route: "user", name: "user", moduleId: "user", nav: true, title: "~(User)~", settings: { auth: true } }
         ])
     }

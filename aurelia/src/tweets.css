@@ -1,0 +1,32 @@
+.tweets {
+  max-width: 60em;
+  margin: .4em auto;
+}
+.tweets>table {
+  background-color: white;
+  padding: .5em;
+  margin: 0px;
+  border: 1px solid grey;
+}
+.tweets tr {
+  margin-bottom: 1em;
+}
+.tweets td {
+  padding-bottom: 1em;
+  vertical-align: top;
+}
+.tweets .col1 {
+  padding-right: .5em;
+}
+.tweets b {
+  padding-right: .5em;
+}
+.tweets .text {
+  white-space: pre-line;
+  padding-bottom: 1em;
+}
+.tweets a {
+  color: black;
+  text-decoration: none;
+  padding-bottom: 1em;
+}

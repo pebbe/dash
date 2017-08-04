@@ -1,4 +1,0 @@
-export class PageTwo {
-    constructor() {
-    }
-}
