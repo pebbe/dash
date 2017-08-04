@@ -7,7 +7,7 @@ export class SaveLoad {
     }
     load() {
         let client = new HttpClient();
-        client.get('service/load')
+        client.get('../bin/load')
             .then(data => {
                 this.loaded = data.response
             })
@@ -17,7 +17,7 @@ export class SaveLoad {
     }
     save() {
         let client = new HttpClient();
-        client.post('service/save', this.text)
+        client.post('../bin/save', this.text)
             .then(data => {
                 this.loaded = data.response
                 this.text = ''
