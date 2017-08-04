@@ -18,6 +18,7 @@ export class App {
             let frag = response.instruction.fragment
             this.hrefEN = "../en/#" + frag
             this.hrefNL = "../nl/#" + frag
+            this.setBodyClass(response.instruction.config)
         })
     }
 
@@ -30,8 +31,19 @@ export class App {
             { route: ["", "home"], name: "home", moduleId: "home", nav: true, title: "~(Home)~" },
             { route: "tweets", name: "tweets", moduleId: "tweets", nav: true, title: "~(Tweets)~" },
             { route: "twimages", name: "twimages", moduleId: "twimages", nav: true, title: "~(Twimages)~" },
-            { route: "links", name: "links", moduleId: "links", nav: true, title: "~(Links)~" },
-            { route: "user", name: "user", moduleId: "user", nav: true, title: "~(User)~", settings: { auth: true } }
+            {
+                route: "links", name: "links", moduleId: "links", nav: true, title: "~(Links)~",
+                settings: {
+                    bodyClass: "white"
+                }
+            },
+            {
+                route: "user", name: "user", moduleId: "user", nav: true, title: "~(User)~",
+                settings: {
+                    bodyClass: "white",
+                    auth: true
+                }
+            }
         ])
     }
 
@@ -50,6 +62,14 @@ export class App {
     update() {
         this.text = ''
         this.signaler.signal('refresh')
+    }
+
+    setBodyClass(cfg) {
+        document.body.removeAttribute('class')
+        var bodyClass = cfg.settings && cfg.settings.bodyClass || ""
+        if (bodyClass) {
+            document.body.setAttribute('class', bodyClass)
+        }
     }
 }
 
