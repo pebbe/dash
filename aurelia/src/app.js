@@ -30,6 +30,7 @@ export class App {
             { route: ["", "home"], name: "home", moduleId: "home", nav: true, title: "~(Home)~" },
             { route: "tweets", name: "tweets", moduleId: "tweets", nav: true, title: "~(Tweets)~" },
             { route: "twimages", name: "twimages", moduleId: "twimages", nav: true, title: "~(Twimages)~" },
+            { route: "links", name: "links", moduleId: "links", nav: true, title: "~(Links)~" },
             { route: "user", name: "user", moduleId: "user", nav: true, title: "~(User)~", settings: { auth: true } }
         ])
     }
