@@ -25,6 +25,3 @@
 .twimages img:hover {
   border: 2px solid blue;
 }
-.twimages .template {
-  display: none
-}

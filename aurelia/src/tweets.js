@@ -18,7 +18,7 @@ export class Tweets {
         }
       })
       .catch(err => {
-        this.error = "~(ERROR)~: " + err['statusText']
+        this.error = "~(ERROR)~: " + err['statusCode'] + ' ' + err['statusText']
       })
   }
 }
