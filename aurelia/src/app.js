@@ -1,4 +1,4 @@
-import { UserService } from './resources/services/user-service'
+import { UserService } from 'resources/services/user-service'
 import { BindingSignaler } from 'aurelia-templating-resources'
 import { Redirect } from 'aurelia-router'
 import { inject } from 'aurelia-framework'

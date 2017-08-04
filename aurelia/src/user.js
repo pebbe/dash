@@ -1,4 +1,4 @@
-import {UserService } from './services/user-service'
+import {UserService } from 'services/user-service'
 import {inject} from 'aurelia-framework';
 
 @inject(UserService)

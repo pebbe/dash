@@ -1,5 +1,5 @@
 import { bindable } from 'aurelia-framework';
-import { Mens } from "./mens";
+import { Mens } from "mens";
 
 export class MensenLijst {
     @bindable matchClass;
