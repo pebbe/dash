@@ -1,15 +1,24 @@
 import { UserService } from 'resources/services/user-service'
 import { BindingSignaler } from 'aurelia-templating-resources'
 import { Redirect } from 'aurelia-router'
+import { EventAggregator } from 'aurelia-event-aggregator'
 import { inject } from 'aurelia-framework'
 
-@inject(UserService, BindingSignaler)
+@inject(UserService, BindingSignaler, EventAggregator)
 export class App {
 
-    constructor(userService, signaler) {
+    constructor(userService, signaler, ea) {
         this.userService = userService
         this.signaler = signaler
+        this.hrefEN = "../en/"
+        this.hrefNL = "../nl/"
         this.text = ""
+
+        ea.subscribe('router:navigation:complete', response => {
+            let frag = response.instruction.fragment
+            this.hrefEN = "../en/#" + frag
+            this.hrefNL = "../nl/#" + frag
+        })
     }
 
     configureRouter(config, router) {

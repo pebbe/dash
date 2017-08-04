@@ -11,8 +11,8 @@
                 <span>${userService.username}</span>
                 <button click.delegate="logout()">~(log out)~</button>
             </span>
-            <a href="../en/{{current}}"><img src="../img/uk.svg" alt="en"></a> &nbsp;
-            <a href="../nl/{{current}}"><img src="../img/nl.svg" alt="nl"></a>
+            <a href.bind="hrefEN"><img src="../img/uk.svg" alt="en"></a> &nbsp;
+            <a href.bind="hrefNL"><img src="../img/nl.svg" alt="nl"></a>
         </div>
 
         <div repeat.for="row of router.navigation | routeFilter & signal:'refresh'" class="left${row.isActive ? ' current' : ''}">
