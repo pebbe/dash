@@ -12,7 +12,7 @@ export class SaveLoad {
                 this.loaded = data.response
             })
             .catch(err => {
-                this.loaded = "ERROR: " + err['statusText']
+                this.loaded = "~(ERROR)~: " + err['statusText']
             })
     }
     save() {
@@ -23,7 +23,7 @@ export class SaveLoad {
                 this.text = ''
             })
             .catch(err => {
-                this.loaded = "ERROR: " + err['statusText']
+                this.loaded = "~(ERROR)~: " + err['statusText']
                 this.text = ''
             })
     }

@@ -9,7 +9,8 @@ export class WebSoc {
     attached() {
         var self = this;
         if (window["WebSocket"]) {
-            this.conn = new WebSocket("ws://" + window.location.host + "/service/ws");
+            //this.conn = new WebSocket("ws://" + window.location.host + "/service/ws");
+            this.conn = new WebSocket('ws://zardoz.service.rug.nl:11000/service/ws')
             this.socketClosed = false;
             this.conn.onclose = function (evt) {
                 // hierbinnen geen this
@@ -27,7 +28,7 @@ export class WebSoc {
             this.interval = setInterval(() => this.update(), 2000);
         } else {
             this.socketClosed = true;
-            this.error = "Your browser does not support WebSockets";
+            this.error = "~(Your browser does not support WebSockets)~";
         }
     }
 

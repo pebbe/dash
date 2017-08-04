@@ -1,5 +1,14 @@
 {
 "LANG":"nl",
+"ERROR": "FOUT",
+"Hello, World!": "Moin, Groningen!",
 "Home": "Thuis",
-"Page 2": "Pagina 2"
+"Page 2": "Pagina 2",
+"This is page 2": "Dit is pagina 2",
+"Your browser does not support WebSockets": "Je browser ondersteunt geen WebSockets",
+"first name": "voornaam",
+"last name": "achternaam",
+"load": "laden",
+"save": "opslaan",
+"search": "zoeken"
 }
