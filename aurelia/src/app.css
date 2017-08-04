@@ -1,26 +1,51 @@
 nav {
-    background-color: grey;
-    border-bottom: 1px solid black;
+  background-color: grey;
+  border-bottom: 1px solid black;
 }
-nav div {
-    display: inline-block;
-    background-color: darkgrey;
-    border-right: 1px solid black;
-    width: 8em;
-}
-
-nav a {
-    padding: .5em 1em;
-    color: black;
-    display: block;
-    text-decoration: none;
-}
-nav .current a,
-nav a:hover {
-    background-color: lightgrey;
-    color: black;
+nav div.left {
+  display: inline-block;
+  background-color: darkgrey;
+  border-right: 2px solid black;
+  border-bottom: 1px solid black;
+  width: 7em;
 }
 
-nav .current {
-    font-weight: bold;
+nav div.left a {
+  padding: .5em 0px .5em 1em;
+  color: black;
+  display: block;
+  text-decoration: none;
+}
+nav div.current a,
+nav div.left a:hover {
+  background-color: lightgrey;
+  color: black;
+}
+nav div.current {
+  font-weight: bold;
+}
+
+nav div.right {
+  padding: .5em 2em 0px .5em;
+  float: right;
+}
+
+nav div.right a {
+  text-decoration: none;
+  color: white;
+}
+
+nav div.right span {
+  padding: 0px 1em 0px 1px;
+}
+
+nav div.right img {
+  border: 1px solid black;
+  height: 1.4em;
+  width: auto;
+  vertical-align: middle;
+}
+
+#logout span {
+  color: #e0e0e0;
 }

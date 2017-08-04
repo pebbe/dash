@@ -1,3 +1,3 @@
 <script>
-location.assign("nl/")
+window.location.replace("nl/")
 </script>

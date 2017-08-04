@@ -1,14 +1,19 @@
 {
 "LANG":"nl",
 "ERROR": "FOUT",
+"Hello": "Hoi",
 "Hello, World!": "Moin, Groningen!",
 "Home": "Thuis",
 "Page 2": "Pagina 2",
 "This is page 2": "Dit is pagina 2",
+"User": "Gebruiker",
 "Your browser does not support WebSockets": "Je browser ondersteunt geen WebSockets",
 "first name": "voornaam",
 "last name": "achternaam",
 "load": "laden",
+"log in": "aanmelden",
+"log out": "afmelden",
 "save": "opslaan",
-"search": "zoeken"
+"search": "zoeken",
+"username": "gebruikersnaam"
 }

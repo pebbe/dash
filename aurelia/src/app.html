@@ -1,7 +1,21 @@
 <template>
     <require from="app.css"></require>
+    <require from="./resources/value-converters/route-filter"></require>
     <nav>
-        <div repeat.for="row of router.navigation" class="${row.isActive ? 'current' : ''}">
+        <div class="right">
+            <span id="login" show.bind="!userService.auth">
+                <input type="text" placeholder="~(username)~" value.bind="text"><button
+                 click.delegate="login()">~(log in)~</button>
+            </span>
+            <span id="logout" show.bind="userService.auth">
+                <span>${userService.username}</span>
+                <button click.delegate="logout()">~(log out)~</button>
+            </span>
+            <a href="../en/{{current}}"><img src="../img/uk.svg" alt="en"></a> &nbsp;
+            <a href="../nl/{{current}}"><img src="../img/nl.svg" alt="nl"></a>
+        </div>
+
+        <div repeat.for="row of router.navigation | routeFilter & signal:'refresh'" class="left${row.isActive ? ' current' : ''}">
             <a href.bind="row.href">${row.title}</a>
         </div>
     </nav>
