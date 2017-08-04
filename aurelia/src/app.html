@@ -15,7 +15,7 @@
             <a href.bind="hrefNL"><img src="../img/nl.svg" alt="nl"></a>
         </div>
 
-        <div repeat.for="row of router.navigation | routeFilter & signal:'refresh'" class="left${row.isActive ? ' current' : ''}">
+        <div repeat.for="row of router.navigation | authFilter & signal:'refresh'" class="left${row.isActive ? ' current' : ''}">
             <a href.bind="row.href">${row.title}</a>
         </div>
     </nav>
