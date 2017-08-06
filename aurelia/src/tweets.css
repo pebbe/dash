@@ -1,11 +1,11 @@
 .tweets {
-  max-width: 60em;
-  margin: .4em auto;
+  padding: .4em;
 }
 .tweets>table {
+  max-width: 60em;
   background-color: white;
   padding: .5em;
-  margin: 0px;
+  margin: 0px auto;
   border: 1px solid grey;
 }
 .tweets tr {
