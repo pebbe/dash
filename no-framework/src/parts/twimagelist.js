@@ -10,10 +10,17 @@ var twimagelist = {}
  */
 twimagelist.Init = function (v) {
   $.get('https://pebbe001.appspot.com/twimages', function (resp) {
+    // returned data will be an XML root element, text string, JavaScript
+    // file, or JSON object, depending on the MIME type of the response
     var images
-    try {
-      images = JSON.parse(resp)
-    } catch (e) {
+    if (typeof (resp) == "string") {
+      try {
+        images = JSON.parse(resp)
+      } catch (e) {
+        twimagelist.error(v.id, e)
+        return
+      }
+    } else {
       images = resp
     }
     for (var i = 0; i < images.length && i < 20; i++) {

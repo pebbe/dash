@@ -10,10 +10,17 @@ var tweetlist = {}
  */
 tweetlist.Init = function (v) {
   $.get('https://pebbe001.appspot.com/tweets', function (resp) {
+    // returned data will be an XML root element, text string, JavaScript
+    // file, or JSON object, depending on the MIME type of the response
     var tweets
-    try {
-      tweets = JSON.parse(resp)
-    } catch (e) {
+    if (typeof (resp) == "string") {
+      try {
+        tweets = JSON.parse(resp)
+      } catch (e) {
+        weetlist.error(v.id, e)
+        return
+      }
+    } else {
       tweets = resp
     }
     for (var i = 0; i < tweets.length && i < 20; i++) {

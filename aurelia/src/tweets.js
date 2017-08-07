@@ -8,6 +8,9 @@ export class Tweets {
     client.get('https://pebbe001.appspot.com/tweets')
       .then(data => {
         this.tweets = JSON.parse(data.response)
+        if (this.tweets.length > 20) {
+          this.tweets.length = 20
+        }
         for (var i = 0; i < this.tweets.length; i++) {
           if (this.tweets[i].retweeted_status && this.tweets[i].retweeted_status.text) {
             this.tweets[i] = this.tweets[i].retweeted_status
