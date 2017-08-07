@@ -1,3 +1,6 @@
+.objectlist table {
+  width: 100%;
+}
 .objectlist>div {
   padding: .5em;
   margin: .5em 0px;
