@@ -4,10 +4,10 @@ rm -fr build
 mkdir build
 tools/builder `pwd`
 
-for i in src/*.scss src/pages/*.scss src/parts/*.scss
+for i in src/*.less src/pages/*.less src/parts/*.less
 do
     echo '/* ' $i ' */' >> build/style.css
-    sass -I./src/imports $i >> build/style.css
+    lessc --include-path=./src/imports $i >> build/style.css
 done
 
 rm -fr devel
