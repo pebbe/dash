@@ -7,7 +7,7 @@ tools/builder `pwd`
 for i in src/*.less src/pages/*.less src/parts/*.less
 do
     echo '/* ' $i ' */' >> build/style.css
-    lessc --include-path=./src/imports $i >> build/style.css
+    node_modules/.bin/lessc --include-path=./src/imports $i >> build/style.css
 done
 
 rm -fr devel
