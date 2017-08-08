@@ -8,7 +8,7 @@ do
     mkdir -p dist/$lang
 	for i in devel/$lang/*.html
     do
-        node_modules/.bin/html-minifier --collapse-whitespace --remove-comments -o dist/$lang/`basename $i` $i
+        node_modules/.bin/html-minifier --collapse-whitespace --conservative-collapse --remove-comments -o dist/$lang/`basename $i` $i
     done
 	perl -p -e 's!/\*.*?\*/!!gs' devel/$lang/style.css | node_modules/.bin/html-minifier --collapse-whitespace > dist/$lang/style.css
 	node_modules/.bin/uglifyjs < devel/$lang/script.js > dist/$lang/script.js

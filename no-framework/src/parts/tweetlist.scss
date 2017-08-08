@@ -1,0 +1,38 @@
+.tweetlist {
+
+  max-width: 60em;
+  margin: 0px auto;
+
+  >table {
+    background-color: white;
+    padding: .5em;
+    margin: 0px;
+    border: 1px solid grey;
+  }
+  tr {
+    margin-bottom: 1em;
+  }
+  td {
+    padding-bottom: 1em;
+    vertical-align: top;
+  }
+  .col1 {
+    padding-right: .5em;
+  }
+  b {
+    padding-right: .5em;
+  }
+  .text {
+    white-space: pre-line;
+    padding-bottom: 1em;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+    padding-bottom: 1em;
+  }
+  .template {
+    display: none
+  }
+
+}

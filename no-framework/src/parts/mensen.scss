@@ -1,0 +1,23 @@
+.mensen {
+
+  table {                                                                                                         
+    width: 100%;                                                                                                  
+  }                                                                                                               
+                                                                                                                
+  th {                                                                                                            
+    cursor: pointer;                                                                                              
+    border: 1px solid blue;                                                                                       
+  }                                                                                                               
+                                                                                                                
+  th:hover {                                                                                                      
+    background-color: yellow;                                                                                     
+  }
+  .nomatchDefault tr.nomatch,
+  .nomatchHide tr.nomatch {
+    display: none;
+  }
+  .nomatchGrey tr.nomatch {
+    color: lightgrey;
+  }
+
+}

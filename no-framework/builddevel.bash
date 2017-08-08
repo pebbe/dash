@@ -4,6 +4,12 @@ rm -fr build
 mkdir build
 tools/builder `pwd`
 
+for i in src/*.scss src/pages/*.scss src/parts/*.scss
+do
+    echo '/* ' $i ' */' >> build/style.css
+    sass -I./src/imports $i >> build/style.css
+done
+
 rm -fr devel
 for langfile in src/i18n/*.json
 do
@@ -22,7 +28,7 @@ do
     done
     node_modules/.bin/browserify --debug --outfile devel/$lang/script.js devel/$lang/script.js.in
 
-    cat src/*.css src/pages/*.css src/parts/*.css | tools/translate $langfile > devel/$lang/style.css
+    tools/translate $langfile < build/style.css > devel/$lang/style.css
 
 done
 cp -a src/static/* devel

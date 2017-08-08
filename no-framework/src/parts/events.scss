@@ -36,18 +36,23 @@
    }
 }
 
-.events>div {
-  margin-top: 1em;
-  padding: 1em;
-  border: 1px solid grey;
-  animation-name: events-animation-show;
-  animation-duration: 1s;
-}
-.events>div.hidden {
-  height: 0px;
-  margin-top: 0px;
-  padding: 0px 1em;
-  opacity: 0;
-  animation-name: events-animation-hide;
-  animation-duration: 1s;
+.events {
+
+  div {
+    margin-top: 1em;
+    padding: 1em;
+    border: 1px solid grey;
+    animation-name: events-animation-show;
+    animation-duration: 1s;
+  }
+
+  >div.hidden {
+    height: 0px;
+    margin-top: 0px;
+    padding: 0px 1em;
+    opacity: 0;
+    animation-name: events-animation-hide;
+    animation-duration: 1s;
+  }
+
 }

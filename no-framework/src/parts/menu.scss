@@ -1,0 +1,55 @@
+nav {
+
+  background-color: grey;
+  border-bottom: 1px solid black;
+
+  div.left {
+    display: inline-block;
+    background-color: darkgrey;
+    border-right: 2px solid black;
+    border-bottom: 1px solid black;
+    width: 8em;
+  }
+
+  div.left a {
+    padding: .5em 0px .5em 1em;
+    color: black;
+    display: block;
+    text-decoration: none;
+  }
+  div.current a,
+  div.left a:hover {
+    background-color: lightgrey;
+    color: black;
+  }
+  div.current {
+    font-weight: bold;
+  }
+
+  div.right {
+    padding: .5em 2em 0px .5em;
+    float: right;
+    text-align: right;
+  }
+
+  div.right a {
+    text-decoration: none;
+    color: white;
+  }
+
+  div.right span {
+    padding: 0px 1em 0px 1px;
+  }
+
+  div.right img {
+    border: 1px solid black;
+    height: 1.4em;
+    width: auto;
+    vertical-align: middle;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+}

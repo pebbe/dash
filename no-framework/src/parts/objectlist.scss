@@ -1,0 +1,28 @@
+.objectlist {
+  
+  table {
+    width: 100%;
+  }
+  >div {
+    padding: .5em;
+    margin: .5em 0px;
+    border: 1px solid grey;
+  }
+  td {
+    color: white;
+    padding: 1em;
+  }
+  .col1 {
+    background-color: red;
+  }
+  .col2 {
+    background-color: green;
+  }
+  .col3 {
+    background-color: blue;
+  }
+  .template {
+    display: none
+  }
+
+}

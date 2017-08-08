@@ -14,6 +14,7 @@ devel/en/index.html: \
 		src/parts/* \
 		src/i18n/en.json \
 		src/i18n/nl.json \
+		src/imports/* \
 		src/static/*.* \
 		src/static/bin/* \
 		src/static/img/*
