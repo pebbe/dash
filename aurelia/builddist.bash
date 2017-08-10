@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 rm -fr dist
 mkdir -p dist/scripts
 cp -a static/* dist

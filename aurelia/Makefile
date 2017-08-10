@@ -7,6 +7,7 @@ run:
 	au run --watch
 
 scripts/app-bundle.js: src/*
+	node_modules/.bin/eslint src/*.js src/*/*.js src/*/*/*.js
 	au build --env prod
 
 dist/nl/scripts/app-bundle.js: i18n/nl.json

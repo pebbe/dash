@@ -2,19 +2,19 @@ export class UserService {
   username = ''
   auth = false
   constructor() {
-    this.load()
+    this.load();
   }
   save(name) {
-    name = name.trim()
-    this.username = name
-    localStorage.setItem('user_id', name)
-    this.update()
+    name = name.trim();
+    this.username = name;
+    localStorage.setItem('user_id', name);
+    this.update();
   }
   load() {
-    this.username = localStorage.getItem('user_id') || ''
-    this.update()
+    this.username = localStorage.getItem('user_id') || '';
+    this.update();
   }
   update() {
-    this.auth = Boolean(this.username)
+    this.auth = Boolean(this.username);
   }
 }
