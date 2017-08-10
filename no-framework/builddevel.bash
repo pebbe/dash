@@ -1,5 +1,7 @@
 #!/bin/bash
 
+node_modules/.bin/eslint -c src/.eslintrc.json src/*/*.js
+
 rm -fr build
 mkdir build
 tools/builder `pwd`

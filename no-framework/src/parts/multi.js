@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
-var $ = require("jquery");
+var $ = require('jquery');
 
-var multi = {}
+var multi = {};
 
 /*
  * parameters:
@@ -10,8 +10,8 @@ var multi = {}
  *   - message
  */
 multi.Init = function (v) {
-  $('#' + v.id).text(v.message + " (~(without box)~)");
-}
+    $('#' + v.id).text(v.message + ' (~(without box)~)');
+};
 
-window.app = window.app || {}
-window.app.multi = multi
+window.app = window.app || {};
+window.app.multi = multi;

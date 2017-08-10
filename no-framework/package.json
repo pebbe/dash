@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "browserify": "^14.4.0",
+    "eslint": "^4.4.1",
     "html-minifier": "^3.5.2",
     "less": "^2.7.2",
     "uglifyjs": "^2.4.11"

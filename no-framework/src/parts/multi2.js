@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
-var $ = require("jquery");
+var $ = require('jquery');
 
-var multi2 = {}
+var multi2 = {};
 
 /*
  * parameters:
@@ -10,8 +10,8 @@ var multi2 = {}
  *   - message
  */
 multi2.Init = function (v) {
-  $('#' + v.id).text(v.message + " (~(with box)~)");
-}
+    $('#' + v.id).text(v.message + ' (~(with box)~)');
+};
 
-window.app = window.app || {}
-window.app.multi2 = multi2
+window.app = window.app || {};
+window.app.multi2 = multi2;

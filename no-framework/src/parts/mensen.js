@@ -1,10 +1,10 @@
-'use strict'
+'use strict';
 
-var $ = require("jquery");
+var $ = require('jquery');
 
-var mensen = {}
+var mensen = {};
 
-mensen.data = {}
+mensen.data = {};
 
 /*
  * parameters:
@@ -13,27 +13,27 @@ mensen.data = {}
  */
 mensen.Init = function (v) {
     function Mens(voornaam, achternaam, achtersort) {
-        this.voornaam = voornaam
-        this.achternaam = achternaam
-        this.achtersort = achtersort || achternaam
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+        this.achtersort = achtersort || achternaam;
         this.tr = $('<tr>')
             .append($('<td>').text(voornaam))
-            .append($('<td>').text(achternaam))
+            .append($('<td>').text(achternaam));
         this.matches = function (substring) {
-            var s = substring.toLowerCase()
+            var s = substring.toLowerCase();
             return voornaam.toLowerCase().search(s) >= 0 ||
-                achternaam.toLowerCase().search(s) >= 0
-        }
+                achternaam.toLowerCase().search(s) >= 0;
+        };
     }
 
-    mensen.data[v.id] = {}
-    var data = mensen.data[v.id]
+    mensen.data[v.id] = {};
+    var data = mensen.data[v.id];
 
-    data.tbody = $('#' + v.id + ' tbody')
-    data.input = $('#' + v.id + ' input')
-    data.input.on('keyup', function () { mensen.zoeken(v.id) })
-    $('#' + v.id + ' .voornaam').on('click', function () { mensen.voornaam(v.id) })
-    $('#' + v.id + ' .achternaam').on('click', function () { mensen.achternaam(v.id) })
+    data.tbody = $('#' + v.id + ' tbody');
+    data.input = $('#' + v.id + ' input');
+    data.input.on('keyup', function () { mensen.zoeken(v.id); });
+    $('#' + v.id + ' .voornaam').on('click', function () { mensen.voornaam(v.id); });
+    $('#' + v.id + ' .achternaam').on('click', function () { mensen.achternaam(v.id); });
 
     data.lijst = [
         new Mens('Chris', 'Froome'),
@@ -49,101 +49,101 @@ mensen.Init = function (v) {
         new Mens('Greg', 'Van Avermaet'),
         new Mens('Fabio', 'Aru'),
         new Mens('Peter', 'Sagan')
-    ]
+    ];
 
-    data.order = 0
-    data.searchText = ''
+    data.order = 0;
+    data.searchText = '';
 
-    var reordered = false
-    var storageContent = localStorage.getItem(v.id)
+    var reordered = false;
+    var storageContent = localStorage.getItem(v.id);
     if (storageContent !== undefined) {
-        var d = JSON.parse(storageContent) || {}
-        var order = d['order']
+        var d = JSON.parse(storageContent) || {};
+        var order = d['order'];
         if (order === 1) {
-            mensen.voornaam(v.id)
-            reordered = true
+            mensen.voornaam(v.id);
+            reordered = true;
         } else if (order === 2) {
-            mensen.achternaam(v.id)
-            reordered = true
+            mensen.achternaam(v.id);
+            reordered = true;
         }
-        data.input.val(d['search'] || '')
+        data.input.val(d['search'] || '');
     }
 
     if (!reordered) {
-        mensen.make(v.id)
+        mensen.make(v.id);
     }
 
-    mensen.zoeken(v.id)
-}
+    mensen.zoeken(v.id);
+};
 
 mensen.make = function (id) {
-    var data = mensen.data[id]
-    data.tbody.html('')
+    var data = mensen.data[id];
+    data.tbody.html('');
     for (var i = 0; i < data.lijst.length; i++) {
-        data.tbody.append(data.lijst[i].tr)
+        data.tbody.append(data.lijst[i].tr);
     }
-}
+};
 
 mensen.voornaam = function (id) {
-    var data = mensen.data[id]
-    data.order = 1
+    var data = mensen.data[id];
+    data.order = 1;
     data.lijst.sort(function (a, b) {
         if (a.voornaam < b.voornaam) {
-            return -1
+            return -1;
         }
         if (a.voornaam > b.voornaam) {
-            return 1
+            return 1;
         }
-        return 0
-    })
-    mensen.make(id)
-    mensen.save(id)
-}
+        return 0;
+    });
+    mensen.make(id);
+    mensen.save(id);
+};
 
 mensen.achternaam = function (id) {
-    var data = mensen.data[id]
-    data.order = 2
+    var data = mensen.data[id];
+    data.order = 2;
     data.lijst.sort(function (a, b) {
         if (a.achtersort < b.achtersort) {
-            return -1
+            return -1;
         }
         if (a.achtersort > b.achtersort) {
-            return 1
+            return 1;
         }
-        return 0
-    })
-    mensen.make(id)
-    mensen.save(id)
-}
+        return 0;
+    });
+    mensen.make(id);
+    mensen.save(id);
+};
 
 mensen.zoeken = function (id) {
-    var data = mensen.data[id]
+    var data = mensen.data[id];
     if (data.searchtimer) {
-        clearTimeout(data.searchtimer)
-        data.searchtimer = undefined
+        clearTimeout(data.searchtimer);
+        data.searchtimer = undefined;
     }
     data.searchtimer = setTimeout(function () {
-        data.searchtimer = undefined
-        data.searchText = data.input.val()
+        data.searchtimer = undefined;
+        data.searchText = data.input.val();
         for (var i = 0; i < data.lijst.length; i++) {
-            data.lijst[i].tr.removeClass('nomatch')
+            data.lijst[i].tr.removeClass('nomatch');
             if (!data.lijst[i].matches(data.searchText)) {
-                data.lijst[i].tr.addClass('nomatch')
+                data.lijst[i].tr.addClass('nomatch');
             }
         }
-        mensen.save(id)
-    }, 200)
-}
+        mensen.save(id);
+    }, 200);
+};
 
 mensen.save = function (id) {
-    var data = mensen.data[id]
+    var data = mensen.data[id];
     localStorage.setItem(
         id,
         JSON.stringify({
             order: data.order,
             search: data.searchText
-        }))
-}
+        }));
+};
 
-window.app = window.app || {}
-window.app.mensen = mensen
+window.app = window.app || {};
+window.app.mensen = mensen;
