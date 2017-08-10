@@ -1,6 +1,6 @@
 #!/bin/bash
 
-node_modules/.bin/eslint -c src/.eslintrc.json src/*/*.js
+set -e
 
 rm -fr build
 mkdir build

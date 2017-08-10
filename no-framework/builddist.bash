@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 rm -fr dist
 mkdir dist
 for langfile in src/i18n/*.json
