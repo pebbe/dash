@@ -55,13 +55,8 @@ func ws(w http.ResponseWriter, r *http.Request) {
 	}()
 
 	var m msg
-	select {
-	case <-chQuit:
-		log.Printf("quit")
-		return
-	case m = <-ch:
-	}
-	upper := string(m.message) == "upper"
+	var ticker <-chan time.Time
+	upper := false
 	j := 0
 	for {
 		select {
@@ -70,21 +65,24 @@ func ws(w http.ResponseWriter, r *http.Request) {
 			return
 		case m = <-ch:
 			upper = string(m.message) == "upper"
-		default:
+			if ticker == nil {
+				ticker = time.Tick(600 * time.Millisecond)
+			}
+		case <-ticker:
+			// can't send anything until m.mt is known
+			w := words[j]
+			if upper {
+				w = strings.ToUpper(w)
+			}
+			err = c.WriteMessage(m.mt, []byte(w))
+			if warn(err) != nil {
+				break
+			}
+			// fmt.Println("write", m.mt, w)
+			j++
+			if j == len(words) {
+				j = 0
+			}
 		}
-		w := words[j]
-		if upper {
-			w = strings.ToUpper(w)
-		}
-		err = c.WriteMessage(m.mt, []byte(w))
-		if warn(err) != nil {
-			break
-		}
-		// fmt.Println("write", m.mt, w)
-		j++
-		if j == len(words) {
-			j = 0
-		}
-		time.Sleep(600 * time.Millisecond)
 	}
 }

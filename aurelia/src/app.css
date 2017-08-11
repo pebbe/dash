@@ -2,6 +2,7 @@ nav {
   background-color: grey;
   border-bottom: 1px solid black;
 }
+
 nav div.left {
   display: inline-block;
   background-color: darkgrey;
@@ -16,11 +17,12 @@ nav div.left a {
   display: block;
   text-decoration: none;
 }
-nav div.current a,
-nav div.left a:hover {
+
+nav div.current a, nav div.left a:hover {
   background-color: lightgrey;
   color: black;
 }
+
 nav div.current {
   font-weight: bold;
 }
