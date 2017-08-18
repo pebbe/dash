@@ -8,6 +8,9 @@ export class Twimages {
     client.get('https://pebbe001.appspot.com/twimages')
       .then(data => {
         this.twimages = JSON.parse(data.response);
+        if (this.twimages.length > 20) {
+          this.twimages.length = 20;
+        }
       })
       .catch(err => {
         this.error = '~(ERROR)~: ' + err.statusCode + ' ' + err.statusText;
