@@ -17,6 +17,7 @@
 "Message from": "Bericht van",
 "No Framework": "Geen freemwerk",
 "Object number": "Object nummer",
+"The weather in": "Het weer in",
 "This is": "Dit is",
 "Tweets": "Tweets",
 "Twimages": "Twaatjes",
@@ -32,6 +33,7 @@
 "save": "opslaan",
 "search": "zoeken",
 "username": "gebruikersnaam",
+"weather station not found": "weerstation niet gevonden",
 "with box": "met box",
 "without box": "zonder box"
 }
