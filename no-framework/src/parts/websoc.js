@@ -19,7 +19,7 @@ websoc.Init = function (v) {
 
     if (window['WebSocket']) {
         //conn = new WebSocket('ws://' + window.location.host + '/service/ws')
-        conn = new WebSocket('ws://zardoz.service.rug.nl:11000/service/ws');
+        conn = new WebSocket('ws://haytabo.let.rug.nl:11000/service/ws');
         socketClosed = false;
         // eslint-disable-next-line no-unused-vars
         conn.onclose = function (ev) {

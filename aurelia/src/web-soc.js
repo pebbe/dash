@@ -10,7 +10,7 @@ export class WebSoc {
     let self = this;
     if (window.WebSocket) {
             //this.conn = new WebSocket("ws://" + window.location.host + "/service/ws");
-      this.conn = new WebSocket('ws://zardoz.service.rug.nl:11000/service/ws');
+      this.conn = new WebSocket('ws://haytabo.let.rug.nl:11000/service/ws');
       this.socketClosed = false;
       this.conn.onclose = function(evt) {
                 // hierbinnen geen this
