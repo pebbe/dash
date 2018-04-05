@@ -16,5 +16,6 @@ do
 	node_modules/.bin/uglifyjs < devel/$lang/script.js > dist/$lang/script.js
 done
 cp -a devel/bin dist
+cp -a devel/data dist
 cp -a devel/img dist
 cp devel/*.* dist

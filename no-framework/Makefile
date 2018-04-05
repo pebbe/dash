@@ -17,6 +17,7 @@ devel/en/index.html: \
 		src/imports/* \
 		src/static/*.* \
 		src/static/bin/* \
+		src/static/data/* \
 		src/static/img/*
 	node_modules/.bin/eslint -c src/.eslintrc.json src/*/*.js
 	./builddevel.bash
