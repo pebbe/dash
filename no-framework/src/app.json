@@ -1,6 +1,7 @@
 {
     "globals": {
-        "title": "~(No Framework)~ - Dash"
+        "title": "~(No Framework)~ - Dash",
+	"bin": "/~kleiweg/cgi-bin/dash/no-framework"
     },
     "i18n": ["en", "nl"]
 }

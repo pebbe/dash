@@ -7,7 +7,7 @@ export class SaveLoad {
   }
   load() {
     let client = new HttpClient();
-    client.get('../bin/load')
+    client.get('/~kleiweg/cgi-bin/dash/aurelia/load')
             .then(data => {
               this.loaded = data.response;
             })
@@ -17,7 +17,7 @@ export class SaveLoad {
   }
   save() {
     let client = new HttpClient();
-    client.post('../bin/save', this.text)
+    client.post('/~kleiweg/cgi-bin/dash/aurelia/save.~(LANG)~', this.text)
             .then(data => {
               this.loaded = data.response;
               this.text = '';

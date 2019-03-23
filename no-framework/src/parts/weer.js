@@ -9,7 +9,7 @@ var weer = {};
  *   - id
  */
 weer.Init = function (v) {
-    $.get('http://www.let.rug.nl/kleiweg/bin/cdf.sh', function (resp) {
+    $.get('/~kleiweg/cgi-bin/meteo/cdf.sh', function (resp) {
         // returned data will be an XML root element, text string, JavaScript
         // file, or JSON object, depending on the MIME type of the response
 
