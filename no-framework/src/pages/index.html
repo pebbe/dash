@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="~(LANG)~">
 
 <head>
   <!--[[headers {"title": "~(Home)~ - {{title}}"}]]-->
 </head>
 
 <body class="home">
-  <!--[[menu {"current":"."}]]-->
+  <!--[[menu {"current":""}]]-->
   <div class="container">
 
     <div>
@@ -82,12 +82,12 @@
     <div>
       <h2>15</h2>
       <!--[[slots {"id":"p15", "slots":[["slot1", "#fill1"], ["slot3", "#fill3"]]}]]-->
-      <span class="slotcontent" id="fill1">~(Content for)~
+      <div class="slotcontent" id="fill1">~(Content for)~
         <em>slot1</em>
-      </span>
-      <span class="slotcontent" id="fill3">
+      </div>
+      <div class="slotcontent" id="fill3">
         <!--[[events {"id":"p15b", "message":"~(Bye!)~"}]]-->
-      </span>
+      </div>
     </div>
 
     <div>
