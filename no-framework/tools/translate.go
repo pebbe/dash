@@ -10,8 +10,9 @@ import (
 )
 
 var (
-	re = regexp.MustCompile(`~\(.*?\)~`)
-	x  = util.CheckErr
+	reString = regexp.MustCompile(`~\(.*?\)~`)
+	reBlock  = regexp.MustCompile(`(?s)<!--LANG:([a-z]+)-->(.*?)<!--/LANG-->`)
+	x        = util.CheckErr
 )
 
 func main() {
@@ -22,7 +23,7 @@ func main() {
 
 	b, err = ioutil.ReadAll(os.Stdin)
 	x(err)
-	s := re.ReplaceAllStringFunc(
+	s := reString.ReplaceAllStringFunc(
 		string(b),
 		func(s string) string {
 			s1 := s[2 : len(s)-2]
@@ -30,6 +31,16 @@ func main() {
 				return t
 			}
 			return s1
+		})
+
+	s = reBlock.ReplaceAllStringFunc(
+		s,
+		func(s string) string {
+			m := reBlock.FindStringSubmatch(s)
+			if m[1] == v["LANG"] {
+				return m[2]
+			}
+			return ""
 		})
 
 	os.Stdout.Write([]byte(s))
