@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "jquery": "^3.4.0",
-    "markdown-it": "^8.4.1"
+    "markdown-it": "^12.3.2"
   },
   "devDependencies": {
     "browserify": "^14.4.0",
